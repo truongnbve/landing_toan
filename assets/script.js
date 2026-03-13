@@ -919,3 +919,42 @@ function renderTestimonials(t) {
     });
     obs.observe(section);
 }
+
+// =============================================
+// Scroll Reveal — IntersectionObserver
+// =============================================
+(function initScrollReveal() {
+    // Skip if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                entry.target.classList.remove('is-hidden');
+            } else {
+                // Only disappear if already been visible (not initial hidden state)
+                if (entry.target.classList.contains('is-visible')) {
+                    entry.target.classList.remove('is-visible');
+                    entry.target.classList.add('is-hidden');
+                }
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    function observeAll() {
+        document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+    }
+
+    // Observe now + re-observe after JS renders dynamic content
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', observeAll);
+    } else {
+        observeAll();
+    }
+    // Re-check after data.json renders (500ms grace)
+    setTimeout(observeAll, 600);
+})();
