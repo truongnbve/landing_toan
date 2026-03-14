@@ -43,8 +43,8 @@
     "subtitle": "Sân chơi trí tuệ cho học sinh Tiểu học và THCS yêu thích môn Toán.\n Do Viện Nghiên cứu Sách và học liệu giáo dục - NXB Giáo dục Việt Nam hợp tác với công ty VietED tổ chức.",
     "buttons": {
       "trial": {
-        "text": "Vào thi thử",
-        "link": "#"
+        "text": "Tham gia thi",
+        "link": "thamgia.html"
       },
       "registerNow": {
         "text": "Đăng ký ngay",
