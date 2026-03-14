@@ -106,7 +106,7 @@
     },
     "attempts": {
       "title": "Số lần thi",
-      "content": "Vòng 1 & 2: Thi tối đa 3 lần, lấy điểm cao nhất. Vòng 3: Thi 1 lần duy nhất."
+      "content": "Vòng 1: Thi tối đa 3 lần, lấy điểm cao nhất. Vòng 2 và 3: Thi 1 lần duy nhất."
     }
   },
   "gallery": {
