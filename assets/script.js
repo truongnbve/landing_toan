@@ -244,7 +244,7 @@ function renderIndex(data) {
                 <h4 class="font-bold text-slate-900 dark:text-white text-sm">${e.name}</h4>
                 <p class="text-xs text-primary dark:text-blue-400 font-medium mt-1">${e.role}</p>
             </div>`;
-        const items = data.experts.list;
+        const items = [...data.experts.list].sort(() => Math.random() - 0.5);
         const container = document.getElementById('experts-container');
         const wrapper = container.parentElement;
         container.classList.remove('animate-marquee');
