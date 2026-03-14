@@ -6,6 +6,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/style.css"/>
+<link rel="stylesheet" href="assets/vong-thi.css"/>
+<script src="assets/script.js" defer></script>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -18,18 +20,6 @@
     },
   }
 </script>
-<style>
-  .math-bg { position:absolute; inset:0; overflow:hidden; pointer-events:none; user-select:none; }
-  .math-bg span { position:absolute; font-family:'Lexend',sans-serif; font-weight:900; color:rgba(255,255,255,0.09); line-height:1; white-space:nowrap; }
-  [data-tab-panel] { display:none; }
-  [data-tab-panel].active { display:block; }
-  .session-ended  { opacity:.55; }
-  .session-active { outline:2px solid #2563eb; }
-  .section-divider { border-top:1px solid rgba(226,232,240,0.7); }
-  #reg-modal { transition:opacity .2s; }
-  #reg-modal.hidden { pointer-events:none; }
-</style>
-<!-- Round config: change these to adapt for Round 2 -->
 <script>
 const ROUND = {
   id: "r1",
@@ -49,12 +39,11 @@ const ROUND = {
 </script>
 <title>Vòng 1 · Cấp Trường — Olympic Toán Tuổi thơ 2026</title>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-blue-100 flex flex-col min-h-screen">
+<body class="olympic-page bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-blue-100 flex flex-col min-h-screen">
 
-<!-- HEADER -->
 <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/90 backdrop-blur-md border-b border-blue-100 dark:border-blue-900/30">
 <div class="container mx-auto px-4 h-20 flex items-center justify-between">
-  <a href="index.html" class="flex items-center gap-2 group cursor-pointer" style="text-decoration:none;">
+  <a href="index.html" class="olympic-no-underline flex items-center gap-2 group cursor-pointer">
     <img src="assets/logo.png" alt="Toán Tuổi Thơ" class="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"/>
   </a>
   <nav id="header-nav" class="hidden md:flex items-center gap-4"></nav>
@@ -68,28 +57,27 @@ const ROUND = {
 
 <main class="flex-grow">
 
-<!-- HERO -->
 <section class="relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500">
-  <div class="math-bg">
-    <span style="left:2%;top:-8%;font-size:5rem;transform:rotate(-10deg)">a²+b²</span>
-    <span style="left:22%;bottom:-12%;font-size:4.5rem;transform:rotate(9deg)">√x</span>
-    <span style="right:12%;top:-5%;font-size:4rem;transform:rotate(-14deg)">½</span>
-    <span style="right:32%;bottom:-10%;font-size:3.5rem;transform:rotate(12deg)">3×4</span>
-    <span style="right:4%;top:12%;font-size:3rem;transform:rotate(-7deg)">∑n</span>
-    <span style="left:48%;top:3%;font-size:2.5rem;transform:rotate(17deg)">n!</span>
+  <div class="olympic-math-bg">
+    <span class="olympic-math-sym-1">a²+b²</span>
+    <span class="olympic-math-sym-2">√x</span>
+    <span class="olympic-math-sym-3">½</span>
+    <span class="olympic-math-sym-4">3×4</span>
+    <span class="olympic-math-sym-5">∑n</span>
+    <span class="olympic-math-sym-6">n!</span>
   </div>
   <div class="container mx-auto px-4 py-5 lg:py-7 relative z-10">
     <div class="flex-1 text-white">
       <div class="flex items-center gap-2 mb-3">
         <a href="thamgia.html" class="inline-flex items-center gap-1 text-blue-200 hover:text-white text-sm font-bold transition-colors">
-          <span class="material-symbols-outlined text-base">arrow_back</span>Tham gia thi
+          <span class="material-symbols-outlined text-base text-white">arrow_back</span>Tham gia thi
         </a>
         <span class="text-blue-300">/</span>
         <span class="text-blue-100 text-sm font-bold">Vòng 1 · Cấp Trường</span>
       </div>
       <div class="flex items-center gap-3 mb-3">
         <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center flex-shrink-0">
-          <span class="material-symbols-outlined text-white text-xl" style="font-variation-settings:'FILL' 1">school</span>
+          <span class="olympic-icon-filled material-symbols-outlined text-white text-xl">school</span>
         </div>
         <h1 class="text-2xl lg:text-3xl font-black leading-tight">Vòng 1 · Cấp Trường</h1>
       </div>
@@ -104,20 +92,19 @@ const ROUND = {
   </div>
 </section>
 
-<!-- TABS -->
 <div class="sticky top-20 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700">
   <div class="container mx-auto px-4">
     <div class="flex gap-0 overflow-x-auto">
-      <button onclick="switchTab('schedule')" data-tab="schedule" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-blue-600 text-blue-600 transition-colors">
+      <button onClick="vongThiSwitchTab('schedule')" data-tab="schedule" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-blue-600 text-blue-600 transition-colors">
         📅 Lịch thi
       </button>
-      <button onclick="switchTab('results')" data-tab="results" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
+      <button onClick="vongThiSwitchTab('results')" data-tab="results" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
         📊 Kết quả
       </button>
-      <button onclick="switchTab('info')" data-tab="info" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
+      <button onClick="vongThiSwitchTab('info')" data-tab="info" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
         ℹ️ Thông tin
       </button>
-      <button onclick="switchTab('rules')" data-tab="rules" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
+      <button onClick="vongThiSwitchTab('rules')" data-tab="rules" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
         📋 Thể lệ
       </button>
 
@@ -127,10 +114,8 @@ const ROUND = {
 
 <div class="container mx-auto px-4 py-8 max-w-4xl space-y-6">
 
-  <!-- TAB: LỊCH THI -->
   <div id="tab-schedule" data-tab-panel="schedule" class="active space-y-6">
 
-    <!-- Active banner -->
     <div class="flex items-center justify-between p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700">
       <div class="flex items-center gap-3">
         <span class="w-3 h-3 rounded-full bg-blue-500 animate-pulse flex-shrink-0"></span>
@@ -139,12 +124,11 @@ const ROUND = {
           <p class="text-xs text-blue-500">Vòng thi diễn ra từ 5/4 đến 20/4/2026 · Thứ 7 &amp; Chủ nhật hàng tuần</p>
         </div>
       </div>
-      <button onclick="openRegModal('06/4','8:00–8:30','active')" class="flex-shrink-0 px-4 py-2.5 bg-blue-600 text-white font-black rounded-xl flex items-center gap-1.5 text-sm hover:bg-blue-700 transition-colors shadow-md shadow-blue-200">
-        <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1">play_arrow</span>Vào thi
+      <button onClick="vongThiOpenRegModal('06/4','8:00–8:30','active')" class="flex-shrink-0 px-4 py-2.5 bg-blue-600 text-white font-black rounded-xl flex items-center gap-1.5 text-sm hover:bg-blue-700 transition-colors shadow-md shadow-blue-200">
+        <span class="olympic-icon-filled material-symbols-outlined text-base">play_arrow</span>Vào thi
       </button>
     </div>
 
-    <!-- Schedule grid -->
     <div id="schedule-section">
       <div class="flex items-center justify-between mb-3">
         <p class="text-xs font-black text-slate-500 uppercase tracking-wider">Lịch thi chi tiết</p>
@@ -156,8 +140,7 @@ const ROUND = {
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
 
-        <!-- 05/4 T7 – all ended -->
-        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600 session-ended">
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600 olympic-session-ended">
           <div class="w-14 text-center flex-shrink-0">
             <div class="text-sm font-black text-slate-400">05/4</div>
             <div class="text-xs text-slate-400">T7</div>
@@ -169,69 +152,64 @@ const ROUND = {
           </div>
         </div>
 
-        <!-- 06/4 CN – ca sáng đang diễn ra -->
-        <div class="flex items-center gap-3 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-400 dark:border-blue-600 session-active">
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-400 dark:border-blue-600 olympic-session-active">
           <div class="w-14 text-center flex-shrink-0">
             <div class="text-sm font-black text-blue-600">06/4</div>
             <div class="text-xs text-blue-400">CN</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="openRegModal('06/4','8:00–8:30','active')" class="px-2 py-1 rounded-lg bg-blue-600 text-white text-xs font-bold flex items-center gap-1 hover:bg-blue-700 transition-colors">
+            <button onClick="vongThiOpenRegModal('06/4','8:00–8:30','active')" class="px-2 py-1 rounded-lg bg-blue-600 text-white text-xs font-bold flex items-center gap-1 hover:bg-blue-700 transition-colors">
               <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse flex-shrink-0"></span>8:00–8:30
             </button>
-            <button onclick="openRegModal('06/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
-            <button onclick="openRegModal('06/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+            <button onClick="vongThiOpenRegModal('06/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onClick="vongThiOpenRegModal('06/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
           </div>
         </div>
 
-        <!-- 12/4 T7 – upcoming -->
         <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
           <div class="w-14 text-center flex-shrink-0">
             <div class="text-sm font-black text-blue-600">12/4</div>
             <div class="text-xs text-slate-400">T7</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="openRegModal('12/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
-            <button onclick="openRegModal('12/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
-            <button onclick="openRegModal('12/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+            <button onClick="vongThiOpenRegModal('12/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onClick="vongThiOpenRegModal('12/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onClick="vongThiOpenRegModal('12/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
           </div>
         </div>
 
-        <!-- 13/4 CN – upcoming -->
         <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
           <div class="w-14 text-center flex-shrink-0">
             <div class="text-sm font-black text-blue-600">13/4</div>
             <div class="text-xs text-slate-400">CN</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="openRegModal('13/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
-            <button onclick="openRegModal('13/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
-            <button onclick="openRegModal('13/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+            <button onClick="vongThiOpenRegModal('13/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onClick="vongThiOpenRegModal('13/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onClick="vongThiOpenRegModal('13/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
           </div>
         </div>
 
-        <!-- 19/4 T7 – upcoming -->
         <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
           <div class="w-14 text-center flex-shrink-0">
             <div class="text-sm font-black text-blue-600">19/4</div>
             <div class="text-xs text-slate-400">T7</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="openRegModal('19/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
-            <button onclick="openRegModal('19/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
-            <button onclick="openRegModal('19/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+            <button onClick="vongThiOpenRegModal('19/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onClick="vongThiOpenRegModal('19/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onClick="vongThiOpenRegModal('19/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
           </div>
         </div>
 
-        <!-- 20/4 CN – upcoming (last day) -->
         <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-blue-200 dark:border-blue-800">
           <div class="w-14 text-center flex-shrink-0">
             <div class="text-sm font-black text-blue-600">20/4</div>
             <div class="text-xs text-blue-400">CN · Cuối</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="openRegModal('20/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
-            <button onclick="openRegModal('20/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onClick="vongThiOpenRegModal('20/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onClick="vongThiOpenRegModal('20/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
             <span class="px-2 py-1 rounded-lg bg-slate-100 text-slate-400 text-xs font-bold">19:00–19:30</span>
           </div>
         </div>
@@ -240,20 +218,19 @@ const ROUND = {
       <p class="text-xs text-slate-400 mt-2 text-center">Bấm vào ca thi để xem thông tin và đăng ký</p>
     </div>
 
-    <!-- Lượt thi còn lại -->
     <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
       <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center gap-3">
-        <span class="material-symbols-outlined text-blue-500 text-xl" style="font-variation-settings:'FILL' 1">history</span>
+        <span class="olympic-icon-filled material-symbols-outlined text-blue-500 text-xl">history</span>
         <h2 class="font-black text-lg text-slate-800 dark:text-slate-100">Lần thi của bạn</h2>
       </div>
       <div class="p-6 space-y-4">
         <div class="flex items-center gap-4 mb-2">
           <div class="flex gap-2">
             <div class="w-10 h-10 rounded-xl bg-blue-500 flex items-center justify-center shadow-sm shadow-blue-200">
-              <span class="material-symbols-outlined text-white text-base" style="font-variation-settings:'FILL' 1">check_circle</span>
+              <span class="olympic-icon-filled material-symbols-outlined text-white text-base">check_circle</span>
             </div>
             <div class="w-10 h-10 rounded-xl bg-blue-500 flex items-center justify-center shadow-sm shadow-blue-200">
-              <span class="material-symbols-outlined text-white text-base" style="font-variation-settings:'FILL' 1">check_circle</span>
+              <span class="olympic-icon-filled material-symbols-outlined text-white text-base">check_circle</span>
             </div>
             <div class="w-10 h-10 rounded-xl bg-blue-100 border-2 border-blue-300 border-dashed flex items-center justify-center">
               <span class="text-blue-400 font-black text-sm">3</span>
@@ -283,22 +260,20 @@ const ROUND = {
           </div>
         </div>
         <div class="p-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 flex gap-2">
-          <span class="material-symbols-outlined text-amber-500 text-base flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">info</span>
+          <span class="olympic-icon-filled material-symbols-outlined text-amber-500 text-base flex-shrink-0 mt-0.5">info</span>
           <p class="text-xs text-amber-700 dark:text-amber-300">Điểm hiện tại <strong>16/20</strong> — Bạn đang ở Top ~20%. Hãy thi lần 3 để cải thiện thứ hạng.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- TAB: KẾT QUẢ -->
   <div id="tab-results" data-tab-panel="results" class="space-y-6">
     <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
       <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center gap-3">
-        <span class="material-symbols-outlined text-blue-500 text-xl" style="font-variation-settings:'FILL' 1">leaderboard</span>
+        <span class="olympic-icon-filled material-symbols-outlined text-blue-500 text-xl">leaderboard</span>
         <h2 class="font-black text-lg text-slate-800 dark:text-slate-100">Kết quả các lần thi</h2>
       </div>
       <div class="p-6 space-y-4">
-        <!-- Best score highlight -->
         <div class="grid grid-cols-3 gap-3">
           <div class="p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 text-center">
             <div class="text-xs font-black text-blue-500 uppercase tracking-wide mb-1">Điểm cao nhất</div>
@@ -316,7 +291,6 @@ const ROUND = {
             <div class="text-xs text-emerald-600 font-bold mt-1">Vào Vòng 2</div>
           </div>
         </div>
-        <!-- Chi tiết từng lần -->
         <div>
           <p class="text-xs font-black text-slate-500 uppercase tracking-wider mb-3">Chi tiết từng lần thi</p>
           <div class="space-y-2">
@@ -354,12 +328,11 @@ const ROUND = {
                 <p class="text-sm font-bold text-slate-400">Lần 3 · Chưa thi</p>
                 <p class="text-xs text-slate-400">Còn 1 lượt — chọn ca thi trong lịch</p>
               </div>
-              <button onclick="switchTab('schedule')" class="text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">Xem lịch →</button>
+              <button onClick="vongThiSwitchTab('schedule')" class="text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">Xem lịch →</button>
             </div>
           </div>
         </div>
-        <!-- Leaderboard mini -->
-        <div class="section-divider pt-4">
+        <div class="olympic-section-divider pt-4">
           <p class="text-xs font-black text-slate-500 uppercase tracking-wider mb-3">Bảng xếp hạng gần bạn</p>
           <div class="space-y-1.5">
             <div class="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700/50">
@@ -394,7 +367,6 @@ const ROUND = {
     </div>
   </div>
 
-  <!-- TAB: THÔNG TIN -->
   <div id="tab-info" data-tab-panel="info" class="space-y-6">
     <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
       <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700">
@@ -403,7 +375,7 @@ const ROUND = {
       <div class="p-6 space-y-5">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="flex gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
-            <span class="material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">calendar_month</span>
+            <span class="olympic-icon-filled material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5">calendar_month</span>
             <div>
               <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">Thời gian</p>
               <p class="font-black text-slate-700 dark:text-slate-200">5/4 – 20/4/2026</p>
@@ -411,7 +383,7 @@ const ROUND = {
             </div>
           </div>
           <div class="flex gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
-            <span class="material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">schedule</span>
+            <span class="olympic-icon-filled material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5">schedule</span>
             <div>
               <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">Ca thi</p>
               <p class="font-black text-slate-700 dark:text-slate-200">3 ca/ngày</p>
@@ -419,7 +391,7 @@ const ROUND = {
             </div>
           </div>
           <div class="flex gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
-            <span class="material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">quiz</span>
+            <span class="olympic-icon-filled material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5">quiz</span>
             <div>
               <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">Cấu trúc đề</p>
               <p class="font-black text-slate-700 dark:text-slate-200">15 câu trắc nghiệm</p>
@@ -427,7 +399,7 @@ const ROUND = {
             </div>
           </div>
           <div class="flex gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
-            <span class="material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">repeat</span>
+            <span class="olympic-icon-filled material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5">repeat</span>
             <div>
               <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">Số lần thi</p>
               <p class="font-black text-slate-700 dark:text-slate-200">Tối đa 3 lần</p>
@@ -435,7 +407,7 @@ const ROUND = {
             </div>
           </div>
           <div class="flex gap-3 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800">
-            <span class="material-symbols-outlined text-emerald-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">trending_up</span>
+            <span class="olympic-icon-filled material-symbols-outlined text-emerald-500 text-xl flex-shrink-0 mt-0.5">trending_up</span>
             <div>
               <p class="text-xs font-bold text-emerald-600 uppercase tracking-wide mb-1">Vào vòng sau</p>
               <p class="font-black text-slate-700 dark:text-slate-200">Top 60% thí sinh</p>
@@ -443,7 +415,7 @@ const ROUND = {
             </div>
           </div>
           <div class="flex gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
-            <span class="material-symbols-outlined text-slate-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">devices</span>
+            <span class="olympic-icon-filled material-symbols-outlined text-slate-500 text-xl flex-shrink-0 mt-0.5">devices</span>
             <div>
               <p class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Hình thức</p>
               <p class="font-black text-slate-700 dark:text-slate-200">Trực tuyến</p>
@@ -451,8 +423,7 @@ const ROUND = {
             </div>
           </div>
         </div>
-        <!-- Đối tượng -->
-        <div class="pt-2 section-divider">
+        <div class="pt-2 olympic-section-divider">
           <p class="text-xs font-black text-slate-500 uppercase tracking-wider mt-4 mb-3">Đối tượng dự thi</p>
           <div class="flex flex-wrap gap-2">
             <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-black bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 text-blue-700 dark:text-blue-300">📗 Lớp 4</span>
@@ -466,7 +437,6 @@ const ROUND = {
     </div>
   </div>
 
-  <!-- TAB: THỂ LỆ -->
   <div id="tab-rules" data-tab-panel="rules" class="space-y-6">
     <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
       <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-blue-600 to-blue-400">
@@ -484,7 +454,7 @@ const ROUND = {
             <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Mỗi thí sinh chỉ được sử dụng <strong>1 tài khoản duy nhất</strong>.</li>
           </ul>
         </div>
-        <div class="section-divider pt-6">
+        <div class="olympic-section-divider pt-6">
           <h3 class="font-black text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
             <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">2</span>
             Quy định thi
@@ -497,7 +467,7 @@ const ROUND = {
             <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Nếu mất kết nối trong khi thi, hệ thống lưu lại tiến trình. Thí sinh có thể tiếp tục khi kết nối lại.</li>
           </ul>
         </div>
-        <div class="section-divider pt-6">
+        <div class="olympic-section-divider pt-6">
           <h3 class="font-black text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
             <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">3</span>
             Cấu trúc đề thi
@@ -521,7 +491,7 @@ const ROUND = {
             </div>
           </div>
         </div>
-        <div class="section-divider pt-6">
+        <div class="olympic-section-divider pt-6">
           <h3 class="font-black text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
             <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">4</span>
             Tiêu chí vào Vòng 2
@@ -537,15 +507,14 @@ const ROUND = {
     </div>
   </div>
 
-</div><!-- /container -->
+</div>
 </main>
 
-<!-- REGISTRATION MODAL -->
 <div id="reg-modal" class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
   <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
     <div class="p-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
       <h3 class="font-black text-xl text-slate-800 dark:text-slate-100" id="modal-title">🎯 Xác nhận vào thi</h3>
-      <button onclick="closeRegModal()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 transition-colors">
+      <button onClick="vongThiCloseRegModal()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 transition-colors">
         <span class="material-symbols-outlined text-slate-500 text-lg">close</span>
       </button>
     </div>
@@ -579,20 +548,19 @@ const ROUND = {
         <p class="flex gap-2"><span class="text-blue-500">🔔</span>Bạn sẽ nhận thông báo trước ca thi 30 phút.</p>
         <p class="flex gap-2"><span class="text-blue-500">✓</span>Bạn có thể đặt nhiều thông báo cho các ca khác nhau.</p>
       </div>
-      <button id="modal-action-active" onclick="closeRegModal()" class="w-full py-3.5 bg-blue-600 text-white font-black rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 text-base">
-        <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">play_arrow</span>
+      <button id="modal-action-active" onClick="vongThiCloseRegModal()" class="w-full py-3.5 bg-blue-600 text-white font-black rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 text-base">
+        <span class="olympic-icon-filled material-symbols-outlined text-lg">play_arrow</span>
         Bắt đầu thi ngay
       </button>
-      <button id="modal-action-notify" onclick="closeRegModal()" class="hidden w-full py-3.5 bg-blue-600 text-white font-black rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 text-base">
-        <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">notifications</span>
+      <button id="modal-action-notify" onClick="vongThiCloseRegModal()" class="hidden w-full py-3.5 bg-blue-600 text-white font-black rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 text-base">
+        <span class="olympic-icon-filled material-symbols-outlined text-lg">notifications</span>
         Đặt thông báo
       </button>
-      <button onclick="closeRegModal()" class="w-full py-2 text-sm font-bold text-slate-500 hover:text-slate-700 transition-colors">Huỷ</button>
+      <button onClick="vongThiCloseRegModal()" class="w-full py-2 text-sm font-bold text-slate-500 hover:text-slate-700 transition-colors">Huỷ</button>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer class="bg-slate-900 dark:bg-black text-slate-300 mt-12">
   <div class="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
     <div>
@@ -615,34 +583,4 @@ const ROUND = {
 
 <div id="mobile-nav-bottom" class="fixed bottom-0 left-0 right-0 lg:hidden bg-white dark:bg-slate-900 border-t border-blue-100 dark:border-slate-800 flex justify-around py-3 px-2 z-50"></div>
 
-<script src="assets/script.js"></script>
-<script>
-function switchTab(tab) {
-  document.querySelectorAll('[data-tab-panel]').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => {
-    b.classList.remove('border-blue-600','text-blue-600');
-    b.classList.add('border-transparent','text-slate-500');
-  });
-  document.getElementById('tab-' + tab).classList.add('active');
-  const btn = document.querySelector('[data-tab="' + tab + '"]');
-  if (btn) { btn.classList.remove('border-transparent','text-slate-500'); btn.classList.add('border-blue-600','text-blue-600'); }
-}
-
-function openRegModal(date, session, status) {
-  document.getElementById('modal-date').textContent = date + '/2026';
-  document.getElementById('modal-session').textContent = session;
-  const isActive = status === 'active';
-  document.getElementById('modal-title').textContent = isActive ? '🎯 Xác nhận vào thi' : '🔔 Đặt thông báo';
-  document.getElementById('modal-action-active').classList.toggle('hidden', !isActive);
-  document.getElementById('modal-action-notify').classList.toggle('hidden', isActive);
-  document.getElementById('modal-active-info').classList.toggle('hidden', !isActive);
-  document.getElementById('modal-notify-info').classList.toggle('hidden', isActive);
-  document.getElementById('modal-time-label').textContent = isActive ? 'Thời gian còn lại' : 'Thời gian bắt đầu';
-  document.getElementById('modal-time-val').textContent = isActive ? '30 phút' : session.split('–')[0];
-  document.getElementById('reg-modal').classList.remove('hidden');
-}
-function closeRegModal() { document.getElementById('reg-modal').classList.add('hidden'); }
-document.getElementById('reg-modal').addEventListener('click', function(e) { if (e.target === this) closeRegModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRegModal(); });
-</script>
 </body></html>
