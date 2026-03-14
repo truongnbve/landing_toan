@@ -31,6 +31,11 @@
   .state-tab { transition: all .15s; }
   #info-modal { transition: opacity .2s; }
   #info-modal.hidden { pointer-events:none; }
+  .math-bg { position:absolute; inset:0; overflow:hidden; pointer-events:none; user-select:none; }
+  .math-bg span {
+    position:absolute; font-family:'Lexend',sans-serif; font-weight:900;
+    color:rgba(255,255,255,0.09); line-height:1; white-space:nowrap;
+  }
 </style>
 <title>Tham gia thi - Olympic Toán Tuổi thơ</title>
 </head>
@@ -116,7 +121,14 @@
   <!-- ===== ROUND TRIAL: VÒng Thi Thử ===== -->
   <div id="round-trial" class="rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
     <!-- Card Header -->
-    <div class="px-5 py-4 flex flex-wrap items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-400">
+    <div class="px-5 py-4 flex flex-wrap items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-400 relative overflow-hidden">
+      <div class="math-bg">
+        <span style="right:7%;top:-12%;font-size:4.5rem;transform:rotate(-12deg)">1+1</span>
+        <span style="right:27%;top:8%;font-size:2.4rem;transform:rotate(10deg)">×3</span>
+        <span style="right:44%;bottom:-18%;font-size:3.8rem;transform:rotate(-8deg)">÷4</span>
+        <span style="right:16%;bottom:-10%;font-size:2.8rem;transform:rotate(16deg)">=?</span>
+        <span style="right:58%;top:2%;font-size:2rem;transform:rotate(-18deg)">2²</span>
+      </div>
       <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
         <span class="material-symbols-outlined text-white text-lg" style="font-variation-settings:'FILL' 1">exercise</span>
       </div>
@@ -207,7 +219,13 @@
 
   <!-- ===== ROUND 1: CẤP TRƯỜNG ===== -->
   <div id="round-1" class="rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
-    <div class="px-5 py-4 flex flex-wrap items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-400">
+    <div class="px-5 py-4 flex flex-wrap items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-400 relative overflow-hidden">
+      <div class="math-bg">
+        <span style="right:5%;top:-10%;font-size:4rem;transform:rotate(-10deg)">a²+b²</span>
+        <span style="right:32%;bottom:-12%;font-size:3.5rem;transform:rotate(12deg)">√x</span>
+        <span style="right:18%;top:5%;font-size:2.6rem;transform:rotate(-15deg)">½</span>
+        <span style="right:52%;top:-5%;font-size:2.2rem;transform:rotate(8deg)">3×4</span>
+      </div>
       <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
         <span class="material-symbols-outlined text-white text-lg" style="font-variation-settings:'FILL' 1">school</span>
       </div>
@@ -355,7 +373,13 @@
 
   <!-- ===== ROUND 2: CẤP TỈNH ===== -->
   <div id="round-2" class="rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
-    <div class="px-5 py-4 flex flex-wrap items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-400">
+    <div class="px-5 py-4 flex flex-wrap items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-400 relative overflow-hidden">
+      <div class="math-bg">
+        <span style="right:5%;top:-12%;font-size:4.5rem;transform:rotate(-8deg)">∑n²</span>
+        <span style="right:28%;bottom:-15%;font-size:3.8rem;transform:rotate(10deg)">n!</span>
+        <span style="right:46%;top:5%;font-size:2.8rem;transform:rotate(-18deg)">πr²</span>
+        <span style="right:16%;top:-5%;font-size:2.2rem;transform:rotate(14deg)">∞</span>
+      </div>
       <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
         <span class="material-symbols-outlined text-white text-lg" style="font-variation-settings:'FILL' 1">location_city</span>
       </div>
@@ -477,7 +501,13 @@
 
   <!-- ===== ROUND 3: CHUNG KẾT ===== -->
   <div id="round-3" class="rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
-    <div class="px-5 py-4 flex flex-wrap items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-400">
+    <div class="px-5 py-4 flex flex-wrap items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-400 relative overflow-hidden">
+      <div class="math-bg">
+        <span style="right:5%;top:-12%;font-size:4.5rem;transform:rotate(-10deg)">∑∏</span>
+        <span style="right:28%;bottom:-15%;font-size:3.5rem;transform:rotate(12deg)">√π²</span>
+        <span style="right:46%;top:5%;font-size:2.6rem;transform:rotate(-15deg)">n→∞</span>
+        <span style="right:16%;top:-8%;font-size:2rem;transform:rotate(18deg)">∫dx</span>
+      </div>
       <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center">
         <span class="material-symbols-outlined text-white text-lg" style="font-variation-settings:'FILL' 1">emoji_events</span>
       </div>
