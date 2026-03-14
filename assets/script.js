@@ -81,7 +81,9 @@ function renderIndex(data) {
     // Hero
     if (document.getElementById('hero-title')) {
         let titleText = data.hero.title;
-        document.getElementById('hero-title').innerHTML = titleText.replace("Môn Toán", "<span class='text-primary underline decoration-blue-500/30'>môn Toán</span>");
+        document.getElementById('hero-title').innerHTML = titleText
+            .replace("Môn Toán", "<span class='text-primary underline decoration-blue-500/30'>môn Toán</span>")
+            .replace("Online", `<span class="hero-online-badge"><span class="hero-online-dot"></span>Online</span>`);
         document.getElementById('hero-subtitle').textContent = data.hero.subtitle;
         document.getElementById('hero-btn-trial').innerHTML = `<span class="material-symbols-outlined">play_circle</span> ${data.hero.buttons.trial.text}`;
         document.getElementById('hero-btn-trial').href = data.hero.buttons.trial.link;
