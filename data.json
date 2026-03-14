@@ -46,7 +46,19 @@
         "text": "Đăng ký ngay",
         "link": "https://olympictuoitho.vn/user/register"
       }
-    }
+    },
+    "list_image": [
+      "assets/gallery/Năm 2024 Thừa Thiên Huế/IMG_3586.webp",
+      "assets/gallery/Năm 2019 Đà Nẵng/IMG_8808.webp",
+      "assets/gallery/Năm 2018 Lào Cai/IMG_0363.webp",
+      "assets/gallery/Năm 2017 Trà Vinh/DSC_2946.webp",
+      "assets/gallery/Năm 2016 Hà Nội/DSC_0069.webp",
+      "assets/gallery/Năm 2014 Đắk Lắk/DSC_0071.webp",
+      "assets/gallery/Năm 2013 Vĩnh Phúc/Bia 1.webp",
+      "assets/gallery/Năm 2012 Cà Mau/IMG_0494.webp",
+      "assets/gallery/Năm 2011 Lào Cai/HZ6Q9634.webp",
+      "assets/gallery/Năm 2009 Thừa Thiên Huế/Bia 1.webp"
+    ]
   },
   "roadmap": {
     "title": "Lộ trình cuộc thi",

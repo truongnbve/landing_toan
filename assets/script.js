@@ -90,12 +90,16 @@ function renderIndex(data) {
         document.getElementById('hero-btn-register-alt').textContent = data.hero.buttons.registerNow.text;
         document.getElementById('hero-btn-register-alt').href = data.hero.buttons.registerNow.link;
 
-        // Hero image slideshow from gallery categories
+        // Hero image slideshow — use hero.list_image if defined, else fallback to gallery
         const front = document.getElementById('hero-img-front');
         const back  = document.getElementById('hero-img-back');
-        if (front && back && data.gallery && data.gallery.categories) {
-            // Collect all images across all categories
-            const allImages = data.gallery.categories.flatMap(c => c.list_image || []).filter(Boolean);
+        if (front && back) {
+            let allImages = [];
+            if (data.hero && data.hero.list_image && data.hero.list_image.length > 0) {
+                allImages = data.hero.list_image.filter(Boolean);
+            } else if (data.gallery && data.gallery.categories) {
+                allImages = data.gallery.categories.flatMap(c => c.list_image || []).filter(Boolean);
+            }
             if (allImages.length > 1) {
                 let current = 0;
                 // Shuffle
