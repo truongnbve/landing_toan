@@ -4,7 +4,7 @@ class OlympicHeader extends HTMLElement {
     this.innerHTML = `
       <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/90 backdrop-blur-md border-b border-blue-100 dark:border-blue-900/30">
         <div class="container mx-auto px-4 h-20 flex items-center justify-between">
-          <a href="index.html" class="flex items-center gap-2 group cursor-pointer" style="text-decoration:none">
+          <a href="index.html" class="olympic-no-underline flex items-center gap-2 group cursor-pointer">
             <img src="assets/logo.png" alt="Toán Tuổi Thơ" class="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"/>
           </a>
           <nav id="header-nav" class="hidden md:flex items-center gap-4"></nav>

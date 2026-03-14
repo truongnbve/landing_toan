@@ -8,7 +8,7 @@
  *   <head>
  *     <meta charset="utf-8"/>
  *     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
- *     <script src="assets/head.js"><\/script>
+ *     <script src="o-assets/head.js"><\/script>
  *     <!-- page-specific styles/scripts if any -->
  *     <title>Page Title</title>
  *   </head>
@@ -22,7 +22,7 @@ document.write('<link href="https://fonts.googleapis.com/css2?family=Lexend:wght
 document.write('<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>');
 
 // 3. Global stylesheet
-document.write('<link rel="stylesheet" href="assets/style.css"/>');
+document.write('<link rel="stylesheet" href="o-assets/style.css"/>');
 
 // 4. Web Components (header, footer, mobile-nav)
 document.write('<script src="assets/components.js"><\/script>');
@@ -42,5 +42,5 @@ document.write('<script>'
   + '<\/script>');
 
 // 6. Main app script (deferred — runs after DOM is ready)
-document.write('<script src="assets/script.js" defer><\/script>');
+document.write('<script src="o-assets/script.js" defer><\/script>');
 
