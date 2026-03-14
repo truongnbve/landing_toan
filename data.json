@@ -610,5 +610,53 @@
         "website": "toantuoitho.vn"
       }
     }
+  },
+  "testimonials": {
+    "title": "Cảm nhận từ học sinh & phụ huynh",
+    "subtitle": "Hơn 10.000 thí sinh đã tham gia Olympic Toán Tuổi Thơ các năm qua",
+    "list": [
+      {
+        "name": "Nguyễn Minh Anh",
+        "role": "Học sinh lớp 5 · Hà Nội",
+        "rating": 5,
+        "quote": "Đề thi vừa sức, không quá khó nhưng cũng đủ thách thức. Con rất thích phần luyện thi vì có thể thi đi thi lại để cải thiện điểm!",
+        "year": "Học sinh"
+      },
+      {
+        "name": "Trần Thị Hương",
+        "role": "Phụ huynh học sinh lớp 6 · TP.HCM",
+        "rating": 5,
+        "quote": "Ban tổ chức rất chuyên nghiệp, thông báo kịp thời. Con tôi đạt giải Nhì và tự tin hẳn lên sau kỳ thi. Năm nào cũng đăng ký!",
+        "year": "Phụ huynh"
+      },
+      {
+        "name": "Lê Đức Khải",
+        "role": "Học sinh lớp 7 · Đà Nẵng",
+        "rating": 5,
+        "quote": "Hình thức thi online rất tiện lợi, không cần đi xa. Kết quả hiện ra ngay sau khi nộp bài nên biết mình làm được bao nhiêu câu.",
+        "year": "Học sinh"
+      },
+      {
+        "name": "Phạm Thành Long",
+        "role": "Phụ huynh học sinh lớp 4 · Cần Thơ",
+        "rating": 4,
+        "quote": "Giao diện đăng ký dễ dùng, hướng dẫn rõ ràng. Giải thưởng thiết thực, con rất vui khi nhận được giấy chứng nhận từ Bộ Giáo dục.",
+        "year": "Phụ huynh"
+      },
+      {
+        "name": "Võ Ngọc Bảo Châu",
+        "role": "Học sinh lớp 8 · Huế",
+        "rating": 5,
+        "quote": "Cuộc thi giúp em ôn luyện kiến thức toán một cách vui vẻ. Bạn bè em ai cũng tham gia, tạo thành không khí cạnh tranh lành mạnh.",
+        "year": "Học sinh"
+      },
+      {
+        "name": "Nguyễn Thị Mai Linh",
+        "role": "Phụ huynh học sinh lớp 5 · Hải Phòng",
+        "rating": 5,
+        "quote": "Rất ấn tượng với chất lượng đề thi — bám sát chương trình nhưng có tư duy. Cảm ơn ban tổ chức đã tạo ra sân chơi bổ ích này!",
+        "year": "Phụ huynh"
+      }
+    ]
   }
 }
