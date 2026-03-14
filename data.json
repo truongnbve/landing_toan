@@ -36,7 +36,7 @@
   },
   "hero": {
     "title": "Olympic Toán Tuổi thơ Online Toàn quốc",
-    "subtitle": "Sân chơi trí tuệ cho học sinh Tiểu học và THCS yêu thích môn Toán.",
+    "subtitle": "Sân chơi trí tuệ cho học sinh Tiểu học và THCS yêu thích môn Toán.\n Do Viện Nghiên cứu Sách và học liệu giáo dục - NXB Giáo dục Việt Nam hợp tác với công ty VietED tổ chức.",
     "buttons": {
       "trial": {
         "text": "Vào thi thử",
@@ -73,7 +73,7 @@
       },
       {
         "date": "Tháng 6/2026",
-        "event": "Vòng 3 - Chung kết toàn quốc (Thi trực tiếp tại Hà Nội)",
+        "event": "Vòng 3 - Chung kết toàn quốc (Thi trực tiếp trên máy tính tại Hà Nội)",
         "details": "Chung kết diễn ra trực tiếp tại Hà Nội. Thí sinh thi 1 lần duy nhất, tranh tài cùng các bạn xuất sắc nhất cả nước. Lễ trao giải trang trọng với nhiều phần thưởng giá trị."
       }
     ]
@@ -447,18 +447,13 @@
         "link": "#"
       },
       {
-        "name": "Viện NC Sách & Học liệu GD",
-        "logo": "assets/partners/vien.png",
-        "link": "#"
-      },
-      {
-        "name": "Sở GD&ĐT Hà Nội",
+        "name": "Các Sở Giáo dục và Đào tạo",
         "logo": "assets/partners/so-gddt-hanoi.png",
         "link": "#"
       },
       {
-        "name": "Fast Lane",
-        "logo": "assets/partners/fast-lane.png",
+        "name": "Công ty CP Văn phòng phẩm Hồng Hà",
+        "logo": "assets/partners/hong-ha.png",
         "link": "#"
       }
     ]
@@ -468,54 +463,94 @@
     "description": "Đội ngũ chuyên gia hàng đầu trong lĩnh vực giáo dục Toán học.",
     "list": [
       {
-        "name": "PGS.TS Nguyễn Văn A",
-        "role": "Trưởng ban đề thi",
+        "name": "Cô Trần Thị Kim Cương",
+        "role": "Phó Tổng biên tập Tạp chí Toán tuổi thơ",
         "photo": "assets/experts/expert-1.png"
       },
       {
-        "name": "TS. Trần Thị B",
-        "role": "Phản biện đề thi",
+        "name": "Thầy Vũ Văn Dương",
+        "role": "Tác giả SGK Toán 4, 5 Bộ sách KNTT",
         "photo": "assets/experts/expert-2.png"
       },
       {
-        "name": "ThS. Lê Văn C",
-        "role": "Cố vấn chuyên môn",
+        "name": "Cô Nguyễn Thủy Chung",
+        "role": "Chủ nhiệm khoa Giáo dục Tiểu học, Trường ĐHSP Hà Nội",
         "photo": "assets/experts/expert-3.png"
       },
       {
-        "name": "PGS.TS Phạm Văn D",
-        "role": "Chủ tịch Hội đồng",
+        "name": "Thầy Đỗ Ngọc Thiện",
+        "role": "Phó Hiệu trưởng trường TH Phúc Tân, Hà Nội",
         "photo": "assets/experts/expert-4.png"
       },
       {
-        "name": "TS. Hoàng Thị E",
-        "role": "Giám khảo chấm thi",
+        "name": "Thầy Nguyễn Đức Tấn",
+        "role": "Trường THCS Nguyễn Du, TP. Hồ Chí Minh",
         "photo": "assets/experts/expert-5.png"
       },
       {
-        "name": "PGS.TS Vũ Văn F",
-        "role": "Ủy viên Hội đồng",
+        "name": "Thầy Phan Duy Nghĩa",
+        "role": "Phòng Giáo dục Phổ thông, Sở GD&ĐT Hà Tĩnh",
         "photo": "assets/experts/expert-6.png"
       },
       {
-        "name": "TS. Đỗ Thị G",
-        "role": "Trưởng ban tổ chức",
+        "name": "Cô Lê Thị Hồng Vân",
+        "role": "Trưởng ban Tiểu học – NXBGDVN",
         "photo": "assets/experts/expert-7.png"
       },
       {
-        "name": "ThS. Ngô Văn H",
-        "role": "Chuyên viên ra đề",
+        "name": "Thầy Đỗ Trung Kiên",
+        "role": "Biên tập viên Tạp chí Toán tuổi thơ",
         "photo": "assets/experts/expert-8.png"
       },
       {
-        "name": "PGS.TS Bùi Thị I",
-        "role": "Cố vấn học thuật",
+        "name": "Thầy Trần Hữu Nam",
+        "role": "Nguyên Tổng biên tập Tạp chí Toán tuổi thơ",
         "photo": "assets/experts/expert-9.png"
       },
       {
-        "name": "TS. Đinh Văn K",
-        "role": "Thư ký Hội đồng",
+        "name": "Thầy Nguyễn Ngọc Hân",
+        "role": "Trường THCS Giảng Võ · Nguyên Phó TBT Tạp chí Toán tuổi thơ",
         "photo": "assets/experts/expert-10.png"
+      },
+      {
+        "name": "Thầy Nguyễn Tiến Lâm",
+        "role": "Trường THPT Chuyên KHTN, ĐHQG Hà Nội",
+        "photo": "assets/experts/expert-11.png"
+      },
+      {
+        "name": "Thầy Trần Quốc Luật",
+        "role": "Trường THPT Chuyên Lê Hồng Phong, TP. Hồ Chí Minh",
+        "photo": "assets/experts/expert-12.png"
+      },
+      {
+        "name": "Thầy Lưu Công Đông",
+        "role": "Trường THPT Chuyên ĐHSP Hà Nội",
+        "photo": "assets/experts/expert-13.png"
+      },
+      {
+        "name": "Thầy Võ Quốc Bá Cẩn",
+        "role": "Trường THCS Archimedes, Yên Hòa, Hà Nội",
+        "photo": "assets/experts/expert-14.png"
+      },
+      {
+        "name": "Thầy Hoàng Việt Dũng",
+        "role": "Trường THCS Đặng Thai Mai, Nghệ An",
+        "photo": "assets/experts/expert-15.png"
+      },
+      {
+        "name": "Thầy Nguyễn Cao Cường",
+        "role": "Hiệu trưởng THCS Thái Thịnh · Tác giả SGK Toán 6, 7, 8, 9",
+        "photo": "assets/experts/expert-16.png"
+      },
+      {
+        "name": "Thầy Nguyễn Quang Tuấn",
+        "role": "Biên tập viên Tạp chí Toán tuổi thơ",
+        "photo": "assets/experts/expert-17.png"
+      },
+      {
+        "name": "Cô Trần Kim Thanh",
+        "role": "Biên tập viên Tạp chí Toán tuổi thơ",
+        "photo": "assets/experts/expert-18.png"
       }
     ]
   },
@@ -526,7 +561,7 @@
         "Cơ quan chủ quản: CÔNG TY CỔ PHẦN CÔNG NGHỆ FAST LANE.",
         "Giấy phép: GPKD số 0110122762 cấp ngày 20/09/2022 tại Sở KH&ĐT Hà Nội.",
         "Người phụ trách: Ông Phạm Ngọc Hiếu – Giám đốc.",
-        "Bản quyền đề thi: Viện Nghiên cứu Sách và học liệu giáo dục - NXB Giáo dục Việt Nam."
+        "Bản quyền cuộc thi: Viện Nghiên cứu Sách và học liệu giáo dục - NXB Giáo dục Việt Nam."
       ]
     },
     "column2": {
