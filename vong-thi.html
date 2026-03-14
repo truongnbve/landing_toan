@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/style.css"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: { "primary":"#2563eb","secondary":"#3b82f6","background-light":"#f0f7ff","background-dark":"#0f172a" },
+        fontFamily: { "display": ["Lexend"] },
+        borderRadius: {"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},
+      },
+    },
+  }
+</script>
+<style>
+  .math-bg { position:absolute; inset:0; overflow:hidden; pointer-events:none; user-select:none; }
+  .math-bg span { position:absolute; font-family:'Lexend',sans-serif; font-weight:900; color:rgba(255,255,255,0.09); line-height:1; white-space:nowrap; }
+  [data-tab-panel] { display:none; }
+  [data-tab-panel].active { display:block; }
+  .session-ended  { opacity:.55; }
+  .session-active { outline:2px solid #2563eb; }
+  .section-divider { border-top:1px solid rgba(226,232,240,0.7); }
+  #reg-modal { transition:opacity .2s; }
+  #reg-modal.hidden { pointer-events:none; }
+</style>
+<!-- Round config: change these to adapt for Round 2 -->
+<script>
+const ROUND = {
+  id: "r1",
+  name: "Vòng 1 · Cấp Trường",
+  subtitle: "Vòng loại tại trường học — Thi trực tuyến",
+  icon: "school",
+  dateRange: "5/4 – 20/4/2026",
+  maxAttempts: 3,
+  attemptLabel: "Tối đa 3 lần",
+  duration: 30,
+  questions: 20,
+  advanceTo: "Vòng 2 · Cấp Tỉnh",
+  advanceRate: "~30%",
+  mathBg: ["a²+b²","√x","½","3×4","∑n","n!"],
+  state: "active"  // upcoming | active | ended
+};
+</script>
+<title>Vòng 1 · Cấp Trường — Olympic Toán Tuổi thơ 2026</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-blue-100 flex flex-col min-h-screen">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/90 backdrop-blur-md border-b border-blue-100 dark:border-blue-900/30">
+<div class="container mx-auto px-4 h-20 flex items-center justify-between">
+  <a href="index.html" class="flex items-center gap-2 group cursor-pointer" style="text-decoration:none;">
+    <img src="assets/logo.png" alt="Toán Tuổi Thơ" class="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"/>
+  </a>
+  <nav id="header-nav" class="hidden md:flex items-center gap-4"></nav>
+  <div class="flex items-center gap-3">
+    <a id="header-login" href="#" class="px-4 py-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-primary transition-colors hidden md:block">Đăng nhập</a>
+    <a id="header-register" href="#" class="px-4 py-2 bg-primary text-white text-sm font-bold rounded-xl shadow-lg shadow-blue-500/20 hover-button-glow hidden md:block">Đăng ký ngay</a>
+    <span class="material-symbols-outlined text-slate-500 md:hidden cursor-pointer p-2">menu</span>
+  </div>
+</div>
+</header>
+
+<main class="flex-grow">
+
+<!-- HERO -->
+<section class="relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500">
+  <div class="math-bg">
+    <span style="left:2%;top:-8%;font-size:5rem;transform:rotate(-10deg)">a²+b²</span>
+    <span style="left:22%;bottom:-12%;font-size:4.5rem;transform:rotate(9deg)">√x</span>
+    <span style="right:12%;top:-5%;font-size:4rem;transform:rotate(-14deg)">½</span>
+    <span style="right:32%;bottom:-10%;font-size:3.5rem;transform:rotate(12deg)">3×4</span>
+    <span style="right:4%;top:12%;font-size:3rem;transform:rotate(-7deg)">∑n</span>
+    <span style="left:48%;top:3%;font-size:2.5rem;transform:rotate(17deg)">n!</span>
+  </div>
+  <div class="container mx-auto px-4 py-10 lg:py-14 relative z-10">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10">
+      <div class="flex-1 text-white">
+        <div class="flex items-center gap-2 mb-4">
+          <a href="thamgia.html" class="inline-flex items-center gap-1 text-blue-200 hover:text-white text-sm font-bold transition-colors">
+            <span class="material-symbols-outlined text-base">arrow_back</span>Tham gia thi
+          </a>
+          <span class="text-blue-300">/</span>
+          <span class="text-blue-100 text-sm font-bold">Vòng 1 · Cấp Trường</span>
+        </div>
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center">
+            <span class="material-symbols-outlined text-white text-2xl" style="font-variation-settings:'FILL' 1">school</span>
+          </div>
+          <div>
+            <h1 class="text-3xl lg:text-4xl font-black leading-tight">Vòng 1 · Cấp Trường</h1>
+            <p class="text-blue-100 text-sm">Vòng loại tại trường học — Thi trực tuyến</p>
+          </div>
+        </div>
+        <p class="text-blue-100 text-base max-w-2xl leading-relaxed">
+          Vòng loại đầu tiên, thi trực tuyến tại nhà hoặc trường. Mỗi thí sinh được thi tối đa 3 lần, hệ thống ghi nhận điểm cao nhất. Top thí sinh xuất sắc sẽ vào Vòng 2 Cấp Tỉnh.
+        </p>
+        <div class="flex flex-wrap gap-2 mt-5">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white border border-white/20">📅 5/4 – 20/4/2026</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white border border-white/20">🔄 Tối đa 3 lần</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white border border-white/20">⏱ 30 phút / lần</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-white/20 text-white border border-white/20">🌐 Trực tuyến</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-500/30 text-emerald-100 border border-emerald-400/30">⬆️ Top vào Vòng 2</span>
+        </div>
+      </div>
+      <!-- Status Card -->
+      <div class="w-full lg:w-80 flex-shrink-0">
+        <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-2xl p-5 text-white">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-black text-lg">Đang diễn ra</span>
+            <span class="ml-auto text-xs text-blue-200">Còn 9 ngày</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2 mb-4">
+            <div class="bg-white/10 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black">2</div>
+              <div class="text-blue-100 text-xs">Đã thi</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black">1</div>
+              <div class="text-blue-100 text-xs">Còn lại</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-3 text-center">
+              <div class="text-2xl font-black">85</div>
+              <div class="text-blue-100 text-xs">Điểm cao</div>
+            </div>
+          </div>
+          <button onclick="document.getElementById('schedule-section').scrollIntoView({behavior:'smooth'})"
+            class="w-full py-3 bg-white text-blue-600 font-black rounded-xl flex items-center justify-center gap-2 hover:bg-blue-50 transition-colors shadow-lg text-base">
+            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">event</span>
+            Xem lịch thi
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABS -->
+<div class="sticky top-20 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700">
+  <div class="container mx-auto px-4">
+    <div class="flex gap-0 overflow-x-auto">
+      <button onclick="switchTab('schedule')" data-tab="schedule" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-blue-600 text-blue-600 transition-colors">
+        📅 Lịch thi
+      </button>
+      <button onclick="switchTab('results')" data-tab="results" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
+        📊 Kết quả
+      </button>
+      <button onclick="switchTab('info')" data-tab="info" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
+        ℹ️ Thông tin
+      </button>
+      <button onclick="switchTab('rules')" data-tab="rules" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
+        📋 Thể lệ
+      </button>
+      <button onclick="switchTab('organizer')" data-tab="organizer" class="tab-btn flex-shrink-0 px-5 py-3.5 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 transition-colors">
+        🏛 Tổ chức
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto px-4 py-8 max-w-4xl space-y-6">
+
+  <!-- TAB: LỊCH THI -->
+  <div id="tab-schedule" data-tab-panel="schedule" class="active space-y-6">
+
+    <!-- Active banner -->
+    <div class="flex items-center justify-between p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700">
+      <div class="flex items-center gap-3">
+        <span class="w-3 h-3 rounded-full bg-blue-500 animate-pulse flex-shrink-0"></span>
+        <div>
+          <p class="font-black text-blue-700 dark:text-blue-300">Đang diễn ra · Ca 8:00 hôm nay đang mở</p>
+          <p class="text-xs text-blue-500">Vòng thi diễn ra từ 5/4 đến 20/4/2026 · Thứ 7 &amp; Chủ nhật hàng tuần</p>
+        </div>
+      </div>
+      <button onclick="openRegModal('06/4','8:00–8:30')" class="flex-shrink-0 px-4 py-2.5 bg-blue-600 text-white font-black rounded-xl flex items-center gap-1.5 text-sm hover:bg-blue-700 transition-colors shadow-md shadow-blue-200">
+        <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1">play_arrow</span>Vào thi
+      </button>
+    </div>
+
+    <!-- Schedule grid -->
+    <div id="schedule-section">
+      <div class="flex items-center justify-between mb-3">
+        <p class="text-xs font-black text-slate-500 uppercase tracking-wider">Lịch thi chi tiết</p>
+        <div class="flex gap-3 text-xs text-slate-400">
+          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-blue-600"></span>Đang diễn ra</span>
+          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-blue-100 border border-blue-300"></span>Sắp tới</span>
+          <span class="flex items-center gap-1"><span class="w-2 h-2 rounded bg-slate-200"></span>Đã qua</span>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+
+        <!-- 05/4 T7 – all ended -->
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600 session-ended">
+          <div class="w-14 text-center flex-shrink-0">
+            <div class="text-sm font-black text-slate-400">05/4</div>
+            <div class="text-xs text-slate-400">T7</div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="px-2 py-1 rounded-lg bg-slate-100 text-slate-400 text-xs font-bold line-through">8:00–8:30</span>
+            <span class="px-2 py-1 rounded-lg bg-slate-100 text-slate-400 text-xs font-bold line-through">14:00–14:30</span>
+            <span class="px-2 py-1 rounded-lg bg-slate-100 text-slate-400 text-xs font-bold line-through">19:00–19:30</span>
+          </div>
+        </div>
+
+        <!-- 06/4 CN – ca sáng đang diễn ra -->
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-400 dark:border-blue-600 session-active">
+          <div class="w-14 text-center flex-shrink-0">
+            <div class="text-sm font-black text-blue-600">06/4</div>
+            <div class="text-xs text-blue-400">CN</div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <button onclick="openRegModal('06/4','8:00–8:30')" class="px-2 py-1 rounded-lg bg-blue-600 text-white text-xs font-bold flex items-center gap-1 hover:bg-blue-700 transition-colors">
+              <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse flex-shrink-0"></span>8:00–8:30
+            </button>
+            <button onclick="openRegModal('06/4','14:00–14:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onclick="openRegModal('06/4','19:00–19:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+          </div>
+        </div>
+
+        <!-- 12/4 T7 – upcoming -->
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
+          <div class="w-14 text-center flex-shrink-0">
+            <div class="text-sm font-black text-blue-600">12/4</div>
+            <div class="text-xs text-slate-400">T7</div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <button onclick="openRegModal('12/4','8:00–8:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onclick="openRegModal('12/4','14:00–14:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onclick="openRegModal('12/4','19:00–19:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+          </div>
+        </div>
+
+        <!-- 13/4 CN – upcoming -->
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
+          <div class="w-14 text-center flex-shrink-0">
+            <div class="text-sm font-black text-blue-600">13/4</div>
+            <div class="text-xs text-slate-400">CN</div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <button onclick="openRegModal('13/4','8:00–8:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onclick="openRegModal('13/4','14:00–14:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onclick="openRegModal('13/4','19:00–19:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+          </div>
+        </div>
+
+        <!-- 19/4 T7 – upcoming -->
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-600">
+          <div class="w-14 text-center flex-shrink-0">
+            <div class="text-sm font-black text-blue-600">19/4</div>
+            <div class="text-xs text-slate-400">T7</div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <button onclick="openRegModal('19/4','8:00–8:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onclick="openRegModal('19/4','14:00–14:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onclick="openRegModal('19/4','19:00–19:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+          </div>
+        </div>
+
+        <!-- 20/4 CN – upcoming (last day) -->
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-blue-200 dark:border-blue-800">
+          <div class="w-14 text-center flex-shrink-0">
+            <div class="text-sm font-black text-blue-600">20/4</div>
+            <div class="text-xs text-blue-400">CN · Cuối</div>
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <button onclick="openRegModal('20/4','8:00–8:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onclick="openRegModal('20/4','14:00–14:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <span class="px-2 py-1 rounded-lg bg-slate-100 text-slate-400 text-xs font-bold">19:00–19:30</span>
+          </div>
+        </div>
+
+      </div>
+      <p class="text-xs text-slate-400 mt-2 text-center">Bấm vào ca thi để xem thông tin và đăng ký</p>
+    </div>
+
+    <!-- Lượt thi còn lại -->
+    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+      <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center gap-3">
+        <span class="material-symbols-outlined text-blue-500 text-xl" style="font-variation-settings:'FILL' 1">history</span>
+        <h2 class="font-black text-lg text-slate-800 dark:text-slate-100">Lần thi của bạn</h2>
+      </div>
+      <div class="p-6 space-y-4">
+        <div class="flex items-center gap-4 mb-2">
+          <div class="flex gap-2">
+            <div class="w-10 h-10 rounded-xl bg-blue-500 flex items-center justify-center shadow-sm shadow-blue-200">
+              <span class="material-symbols-outlined text-white text-base" style="font-variation-settings:'FILL' 1">check_circle</span>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-blue-500 flex items-center justify-center shadow-sm shadow-blue-200">
+              <span class="material-symbols-outlined text-white text-base" style="font-variation-settings:'FILL' 1">check_circle</span>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-blue-100 border-2 border-blue-300 border-dashed flex items-center justify-center">
+              <span class="text-blue-400 font-black text-sm">3</span>
+            </div>
+          </div>
+          <div>
+            <p class="font-black text-slate-700 dark:text-slate-200">2/3 lần đã thi <span class="text-blue-500 text-sm font-semibold">(còn 1 lượt)</span></p>
+            <p class="text-xs text-slate-400">Điểm cao nhất sẽ được tính vào kết quả vòng</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
+            <p class="text-xs text-slate-400 mb-1">Lần 1 · 05/4 Ca sáng</p>
+            <p class="text-2xl font-black text-slate-700 dark:text-slate-200">76 <span class="text-xs text-slate-400 font-semibold">/ 100</span></p>
+            <p class="text-xs text-slate-400">⏱ 27 phút</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700">
+            <p class="text-xs text-blue-500 mb-1 font-bold">Lần 2 · 05/4 Ca chiều ⭐ Cao nhất</p>
+            <p class="text-2xl font-black text-blue-600 dark:text-blue-400">85 <span class="text-xs text-blue-400 font-semibold">/ 100</span></p>
+            <p class="text-xs text-blue-400">⏱ 29 phút</p>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-dashed border-slate-300 dark:border-slate-600 flex items-center justify-center">
+            <div class="text-center">
+              <span class="material-symbols-outlined text-slate-300 dark:text-slate-600 text-2xl">add_circle</span>
+              <p class="text-xs text-slate-400 mt-1">Lần 3 chưa thi</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-3 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 flex gap-2">
+          <span class="material-symbols-outlined text-amber-500 text-base flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">info</span>
+          <p class="text-xs text-amber-700 dark:text-amber-300">Điểm hiện tại <strong>85/100</strong> — Bạn đang ở Top ~20%. Hãy thi lần 3 để cải thiện thứ hạng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: KẾT QUẢ -->
+  <div id="tab-results" data-tab-panel="results" class="space-y-6">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+      <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700 flex items-center gap-3">
+        <span class="material-symbols-outlined text-blue-500 text-xl" style="font-variation-settings:'FILL' 1">leaderboard</span>
+        <h2 class="font-black text-lg text-slate-800 dark:text-slate-100">Kết quả các lần thi</h2>
+      </div>
+      <div class="p-6 space-y-4">
+        <!-- Best score highlight -->
+        <div class="grid grid-cols-3 gap-3">
+          <div class="p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 text-center">
+            <div class="text-xs font-black text-blue-500 uppercase tracking-wide mb-1">Điểm cao nhất</div>
+            <div class="text-4xl font-black text-blue-600">85</div>
+            <div class="text-xs text-slate-400 mt-1">/ 100 điểm</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center">
+            <div class="text-xs font-black text-slate-500 uppercase tracking-wide mb-1">Thứ hạng</div>
+            <div class="text-4xl font-black text-slate-700 dark:text-slate-200">#124</div>
+            <div class="text-xs text-slate-400 mt-1">/ 5.420 thí sinh</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700 text-center">
+            <div class="text-xs font-black text-emerald-600 uppercase tracking-wide mb-1">Dự báo</div>
+            <div class="text-2xl font-black text-emerald-600">✅</div>
+            <div class="text-xs text-emerald-600 font-bold mt-1">Vào Vòng 2</div>
+          </div>
+        </div>
+        <!-- Chi tiết từng lần -->
+        <div>
+          <p class="text-xs font-black text-slate-500 uppercase tracking-wider mb-3">Chi tiết từng lần thi</p>
+          <div class="space-y-2">
+            <div class="flex items-center gap-4 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
+              <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center flex-shrink-0">
+                <span class="text-blue-600 font-black text-sm">1</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm font-bold text-slate-700 dark:text-slate-200">Lần 1 · 05/4/2026 · Ca sáng 8:00</p>
+                <p class="text-xs text-slate-400">Thời gian làm bài: 27 phút · 13/20 câu đúng</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xl font-black text-slate-700 dark:text-slate-200">76</p>
+                <p class="text-xs text-slate-400">/ 100</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-3.5 rounded-xl bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-300 dark:border-blue-700">
+              <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
+                <span class="text-white font-black text-sm">2</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm font-bold text-blue-700 dark:text-blue-300">Lần 2 · 05/4/2026 · Ca chiều 14:00 ⭐</p>
+                <p class="text-xs text-blue-500">Thời gian làm bài: 29 phút · 17/20 câu đúng</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xl font-black text-blue-600 dark:text-blue-400">85</p>
+                <p class="text-xs text-blue-400">/ 100</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-dashed border-slate-300 dark:border-slate-600 opacity-60">
+              <div class="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-600 flex items-center justify-center flex-shrink-0">
+                <span class="text-slate-400 font-black text-sm">3</span>
+              </div>
+              <div class="flex-1">
+                <p class="text-sm font-bold text-slate-400">Lần 3 · Chưa thi</p>
+                <p class="text-xs text-slate-400">Còn 1 lượt — chọn ca thi trong lịch</p>
+              </div>
+              <button onclick="switchTab('schedule')" class="text-xs font-bold text-blue-500 hover:text-blue-600 transition-colors">Xem lịch →</button>
+            </div>
+          </div>
+        </div>
+        <!-- Leaderboard mini -->
+        <div class="section-divider pt-4">
+          <p class="text-xs font-black text-slate-500 uppercase tracking-wider mb-3">Bảng xếp hạng gần bạn</p>
+          <div class="space-y-1.5">
+            <div class="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700/50">
+              <span class="w-6 text-center text-xs font-black text-amber-500">#122</span>
+              <div class="flex-1 text-sm text-slate-600 dark:text-slate-300">Nguyễn Minh H.</div>
+              <span class="text-sm font-black text-slate-700 dark:text-slate-200">87</span>
+            </div>
+            <div class="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700/50">
+              <span class="w-6 text-center text-xs font-black text-amber-500">#123</span>
+              <div class="flex-1 text-sm text-slate-600 dark:text-slate-300">Trần Bảo A.</div>
+              <span class="text-sm font-black text-slate-700 dark:text-slate-200">86</span>
+            </div>
+            <div class="flex items-center gap-3 px-3 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700">
+              <span class="w-6 text-center text-xs font-black text-blue-600">#124</span>
+              <div class="flex-1 text-sm font-bold text-blue-700 dark:text-blue-300">Bạn 👈</div>
+              <span class="text-sm font-black text-blue-600">85</span>
+            </div>
+            <div class="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700/50">
+              <span class="w-6 text-center text-xs font-black text-slate-400">#125</span>
+              <div class="flex-1 text-sm text-slate-600 dark:text-slate-300">Lê Thị K.</div>
+              <span class="text-sm font-black text-slate-700 dark:text-slate-200">84</span>
+            </div>
+            <div class="flex items-center gap-3 px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700/50">
+              <span class="w-6 text-center text-xs font-black text-slate-400">#126</span>
+              <div class="flex-1 text-sm text-slate-600 dark:text-slate-300">Phạm Đức T.</div>
+              <span class="text-sm font-black text-slate-700 dark:text-slate-200">83</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 text-center mt-2">Cập nhật mỗi 15 phút · 5.420 thí sinh tham gia</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: THÔNG TIN -->
+  <div id="tab-info" data-tab-panel="info" class="space-y-6">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+      <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700">
+        <h2 class="font-black text-lg text-slate-800 dark:text-slate-100">Thông tin vòng thi</h2>
+      </div>
+      <div class="p-6 space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
+            <span class="material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">calendar_month</span>
+            <div>
+              <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">Thời gian</p>
+              <p class="font-black text-slate-700 dark:text-slate-200">5/4 – 20/4/2026</p>
+              <p class="text-xs text-slate-500 mt-0.5">Thứ 7 &amp; Chủ nhật hàng tuần</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
+            <span class="material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">schedule</span>
+            <div>
+              <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">Ca thi</p>
+              <p class="font-black text-slate-700 dark:text-slate-200">3 ca/ngày</p>
+              <p class="text-xs text-slate-500 mt-0.5">8:00 · 14:00 · 19:00 — mỗi ca 30 phút</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
+            <span class="material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">quiz</span>
+            <div>
+              <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">Cấu trúc đề</p>
+              <p class="font-black text-slate-700 dark:text-slate-200">20 câu trắc nghiệm</p>
+              <p class="text-xs text-slate-500 mt-0.5">30 phút · 100 điểm</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
+            <span class="material-symbols-outlined text-blue-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">repeat</span>
+            <div>
+              <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">Số lần thi</p>
+              <p class="font-black text-slate-700 dark:text-slate-200">Tối đa 3 lần</p>
+              <p class="text-xs text-slate-500 mt-0.5">Điểm cao nhất được ghi nhận</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800">
+            <span class="material-symbols-outlined text-emerald-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">trending_up</span>
+            <div>
+              <p class="text-xs font-bold text-emerald-600 uppercase tracking-wide mb-1">Vào vòng sau</p>
+              <p class="font-black text-slate-700 dark:text-slate-200">Top ~30% thí sinh</p>
+              <p class="text-xs text-slate-500 mt-0.5">Tiếp tục vào Vòng 2 · Cấp Tỉnh</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
+            <span class="material-symbols-outlined text-slate-500 text-xl flex-shrink-0 mt-0.5" style="font-variation-settings:'FILL' 1">devices</span>
+            <div>
+              <p class="text-xs font-bold text-slate-500 uppercase tracking-wide mb-1">Hình thức</p>
+              <p class="font-black text-slate-700 dark:text-slate-200">Trực tuyến</p>
+              <p class="text-xs text-slate-500 mt-0.5">Tại nhà hoặc trường · Tự do thiết bị</p>
+            </div>
+          </div>
+        </div>
+        <!-- Đối tượng -->
+        <div class="pt-2 section-divider">
+          <p class="text-xs font-black text-slate-500 uppercase tracking-wider mt-4 mb-3">Đối tượng dự thi</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 text-center">
+              <div class="text-2xl mb-1">📗</div>
+              <div class="font-black text-blue-700 dark:text-blue-300">Lớp 3–5</div>
+              <div class="text-xs text-slate-500 mt-0.5">Tiểu học</div>
+            </div>
+            <div class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 text-center">
+              <div class="text-2xl mb-1">📘</div>
+              <div class="font-black text-blue-700 dark:text-blue-300">Lớp 6–7</div>
+              <div class="text-xs text-slate-500 mt-0.5">THCS Cơ bản</div>
+            </div>
+            <div class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 text-center">
+              <div class="text-2xl mb-1">📙</div>
+              <div class="font-black text-blue-700 dark:text-blue-300">Lớp 8–9</div>
+              <div class="text-xs text-slate-500 mt-0.5">THCS Nâng cao</div>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center">
+              <div class="text-2xl mb-1">🌟</div>
+              <div class="font-black text-slate-600 dark:text-slate-300">Tất cả</div>
+              <div class="text-xs text-slate-500 mt-0.5">Học sinh VN</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: THỂ LỆ -->
+  <div id="tab-rules" data-tab-panel="rules" class="space-y-6">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+      <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-blue-600 to-blue-400">
+        <h2 class="font-black text-lg text-white">📋 Thể lệ &amp; Quy định Vòng 1</h2>
+      </div>
+      <div class="p-6 space-y-6">
+        <div>
+          <h3 class="font-black text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">1</span>
+            Điều kiện dự thi
+          </h3>
+          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Thí sinh phải đăng ký tài khoản và điền đầy đủ thông tin hồ sơ trên olympictuoitho.vn.</li>
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Thí sinh phải tham gia <strong>Luyện Thi</strong> ít nhất 1 lần trước khi vào Vòng 1 (khuyến nghị).</li>
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Mỗi thí sinh chỉ được sử dụng <strong>1 tài khoản duy nhất</strong>.</li>
+          </ul>
+        </div>
+        <div class="section-divider pt-6">
+          <h3 class="font-black text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">2</span>
+            Quy định thi
+          </h3>
+          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Thí sinh phải vào thi đúng <strong>ca thi đã đăng ký</strong>. Quá 5 phút sau giờ khai mạc ca thi, không được vào thi.</li>
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Mỗi thí sinh được thi tối đa <strong>3 lần</strong>. Điểm cao nhất sẽ được tính.</li>
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Không được sử dụng <strong>bất kỳ tài liệu</strong> hỗ trợ nào (sách, phần mềm, AI, người khác trợ giúp).</li>
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Hệ thống sẽ chấm điểm tự động và công bố kết quả <strong>ngay sau khi nộp bài</strong>.</li>
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Nếu mất kết nối trong khi thi, hệ thống lưu lại tiến trình. Thí sinh có thể tiếp tục khi kết nối lại.</li>
+          </ul>
+        </div>
+        <div class="section-divider pt-6">
+          <h3 class="font-black text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">3</span>
+            Cấu trúc đề thi
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center">
+              <div class="text-2xl font-black text-blue-600">20</div>
+              <div class="text-xs text-slate-500">câu hỏi</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center">
+              <div class="text-2xl font-black text-blue-600">30'</div>
+              <div class="text-xs text-slate-500">thời gian</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center">
+              <div class="text-2xl font-black text-blue-600">100</div>
+              <div class="text-xs text-slate-500">điểm tối đa</div>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 text-center">
+              <div class="text-2xl font-black text-blue-600">A–D</div>
+              <div class="text-xs text-slate-500">trắc nghiệm</div>
+            </div>
+          </div>
+        </div>
+        <div class="section-divider pt-6">
+          <h3 class="font-black text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">4</span>
+            Tiêu chí vào Vòng 2
+          </h3>
+          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Tỉ lệ lọt vào Vòng 2: khoảng <strong>30% thí sinh</strong> đạt điểm cao nhất theo từng khối lớp.</li>
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Kết quả Vòng 2 sẽ được thông báo <strong>trong vòng 48 giờ</strong> sau khi Vòng 1 kết thúc.</li>
+            <li class="flex gap-2"><span class="text-blue-500 flex-shrink-0 mt-0.5">▸</span>Thí sinh đủ điều kiện sẽ nhận email thông báo và được mở khóa đăng ký Vòng 2.</li>
+          </ul>
+        </div>
+        <div class="section-divider pt-6">
+          <h3 class="font-black text-slate-700 dark:text-slate-200 mb-3 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-black">5</span>
+            Nội dung kiến thức
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs font-black text-slate-500 uppercase tracking-wider mb-2">Tiểu học (Lớp 3–5)</p>
+              <ul class="space-y-1.5 text-sm text-slate-600 dark:text-slate-300">
+                <li class="flex gap-2"><span class="text-blue-400">•</span>Số học, các phép tính cơ bản</li>
+                <li class="flex gap-2"><span class="text-blue-400">•</span>Phân số, số thập phân</li>
+                <li class="flex gap-2"><span class="text-blue-400">•</span>Hình học phẳng, đo lường</li>
+                <li class="flex gap-2"><span class="text-blue-400">•</span>Bài toán ứng dụng thực tế</li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-xs font-black text-slate-500 uppercase tracking-wider mb-2">THCS (Lớp 6–9)</p>
+              <ul class="space-y-1.5 text-sm text-slate-600 dark:text-slate-300">
+                <li class="flex gap-2"><span class="text-blue-400">•</span>Đại số, phương trình — bất phương trình</li>
+                <li class="flex gap-2"><span class="text-blue-400">•</span>Hình học phẳng và không gian</li>
+                <li class="flex gap-2"><span class="text-blue-400">•</span>Tổ hợp, xác suất cơ bản</li>
+                <li class="flex gap-2"><span class="text-blue-400">•</span>Tư duy logic, suy luận toán học</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: TỔ CHỨC -->
+  <div id="tab-organizer" data-tab-panel="organizer" class="space-y-6">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm">
+      <div class="px-6 py-4 border-b border-slate-100 dark:border-slate-700">
+        <h2 class="font-black text-lg text-slate-800 dark:text-slate-100">🏛 Đơn vị tổ chức &amp; bảo trợ</h2>
+      </div>
+      <div class="p-6 space-y-5">
+        <div class="flex gap-4 p-5 rounded-2xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700">
+          <div class="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-200">
+            <span class="material-symbols-outlined text-white text-2xl" style="font-variation-settings:'FILL' 1">school</span>
+          </div>
+          <div>
+            <p class="text-xs font-black text-blue-500 uppercase tracking-wide mb-1">Đơn vị chủ trì</p>
+            <p class="font-black text-slate-700 dark:text-slate-200 text-base leading-tight">Công ty Cổ phần Công nghệ Fast Lane</p>
+            <p class="text-xs text-slate-500 mt-1">Tầng 12, 22 Láng Hạ, Đống Đa, Hà Nội</p>
+            <p class="text-xs text-blue-500 mt-0.5 font-semibold">olympictuoitho.vn</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="flex gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-blue-500 text-lg" style="font-variation-settings:'FILL' 1">menu_book</span>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-0.5">Bảo trợ chuyên môn</p>
+              <p class="font-bold text-slate-700 dark:text-slate-200 text-sm">Hội Toán học Việt Nam</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-blue-500 text-lg" style="font-variation-settings:'FILL' 1">business</span>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-0.5">Đồng tổ chức</p>
+              <p class="font-bold text-slate-700 dark:text-slate-200 text-sm">Sở GD&amp;ĐT các tỉnh</p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-4 rounded-xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-blue-500 text-lg" style="font-variation-settings:'FILL' 1">computer</span>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-400 uppercase tracking-wide mb-0.5">Hỗ trợ kỹ thuật</p>
+              <p class="font-bold text-slate-700 dark:text-slate-200 text-sm">Fast Lane Technology</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 text-white">
+          <h3 class="font-black text-base mb-3">📞 Liên hệ hỗ trợ</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="bg-white/15 rounded-xl p-3">
+              <p class="text-xs text-blue-100 mb-0.5">Email</p>
+              <p class="font-bold text-sm">support@olympictuoitho.vn</p>
+            </div>
+            <div class="bg-white/15 rounded-xl p-3">
+              <p class="text-xs text-blue-100 mb-0.5">Điện thoại</p>
+              <p class="font-bold text-sm">1800 xxxx (miễn phí)</p>
+            </div>
+            <div class="bg-white/15 rounded-xl p-3">
+              <p class="text-xs text-blue-100 mb-0.5">Facebook</p>
+              <p class="font-bold text-sm">fb.com/olympictuoitho</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+</main>
+
+<!-- REGISTRATION MODAL -->
+<div id="reg-modal" class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+  <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
+    <div class="p-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
+      <h3 class="font-black text-xl text-slate-800 dark:text-slate-100">🎯 Xác nhận vào thi</h3>
+      <button onclick="closeRegModal()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 transition-colors">
+        <span class="material-symbols-outlined text-slate-500 text-lg">close</span>
+      </button>
+    </div>
+    <div class="p-6 space-y-4">
+      <div class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <p class="text-xs text-blue-500 font-bold mb-0.5">Vòng thi</p>
+            <p class="font-black text-slate-700 dark:text-slate-200">Vòng 1 · Cấp Trường</p>
+          </div>
+          <div>
+            <p class="text-xs text-blue-500 font-bold mb-0.5">Ngày thi</p>
+            <p class="font-black text-slate-700 dark:text-slate-200" id="modal-date">06/4/2026</p>
+          </div>
+          <div>
+            <p class="text-xs text-blue-500 font-bold mb-0.5">Ca thi</p>
+            <p class="font-black text-slate-700 dark:text-slate-200" id="modal-session">8:00–8:30</p>
+          </div>
+          <div>
+            <p class="text-xs text-blue-500 font-bold mb-0.5">Thời gian còn lại</p>
+            <p class="font-black text-slate-700 dark:text-slate-200">30 phút</p>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-1.5 text-sm text-slate-600 dark:text-slate-300">
+        <p class="flex gap-2"><span class="text-blue-500">✓</span>Đây là lần thi thứ 3 (cuối) của bạn.</p>
+        <p class="flex gap-2"><span class="text-blue-500">✓</span>Kết quả hiển thị ngay sau khi nộp bài.</p>
+        <p class="flex gap-2"><span class="text-amber-500">⚠</span>Một khi đã bắt đầu, bài thi sẽ tính thời gian.</p>
+      </div>
+      <button onclick="closeRegModal()" class="w-full py-3.5 bg-blue-600 text-white font-black rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 text-base">
+        <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">play_arrow</span>
+        Bắt đầu thi ngay
+      </button>
+      <button onclick="closeRegModal()" class="w-full py-2 text-sm font-bold text-slate-500 hover:text-slate-700 transition-colors">Huỷ</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 dark:bg-black text-slate-300 mt-12">
+  <div class="container mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div>
+      <h5 class="text-white font-bold mb-4">Olympic Toán Tuổi thơ</h5>
+      <p class="text-sm text-slate-400">Sân chơi toán học trực tuyến dành cho học sinh Tiểu học và THCS toàn quốc.</p>
+    </div>
+    <div>
+      <h5 class="text-white font-bold mb-4">Chính sách</h5>
+      <ul id="footer-col2-links" class="space-y-2 text-sm"></ul>
+    </div>
+    <div>
+      <h5 class="text-white font-bold mb-4">Liên hệ</h5>
+      <ul id="footer-col3-links" class="space-y-2 text-sm"></ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 container mx-auto px-4 py-5 text-xs text-slate-500">
+    © 2026 CÔNG TY CỔ PHẦN CÔNG NGHỆ FAST LANE. All rights reserved.
+  </div>
+</footer>
+
+<div id="mobile-nav-bottom" class="fixed bottom-0 left-0 right-0 lg:hidden bg-white dark:bg-slate-900 border-t border-blue-100 dark:border-slate-800 flex justify-around py-3 px-2 z-50"></div>
+
+<script src="assets/script.js"></script>
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('[data-tab-panel]').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.classList.remove('border-blue-600','text-blue-600');
+    b.classList.add('border-transparent','text-slate-500');
+  });
+  document.getElementById('tab-' + tab).classList.add('active');
+  const btn = document.querySelector('[data-tab="' + tab + '"]');
+  if (btn) { btn.classList.remove('border-transparent','text-slate-500'); btn.classList.add('border-blue-600','text-blue-600'); }
+}
+
+function openRegModal(date, session) {
+  document.getElementById('modal-date').textContent = date + '/2026';
+  document.getElementById('modal-session').textContent = session;
+  document.getElementById('reg-modal').classList.remove('hidden');
+}
+function closeRegModal() { document.getElementById('reg-modal').classList.add('hidden'); }
+document.getElementById('reg-modal').addEventListener('click', function(e) { if (e.target === this) closeRegModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRegModal(); });
+</script>
+</body></html>
