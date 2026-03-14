@@ -909,27 +909,33 @@ function renderTestimonials(t) {
         s.id = 'testimonial-style';
         s.textContent = `
             @keyframes testimonial-in {
-                0%   { opacity: 0; transform: translateY(28px) scale(0.95); }
+                0%   { opacity: 0; transform: translateY(32px) scale(0.94); }
                 100% { opacity: 1; transform: translateY(0) scale(1); }
-            }`;
+            }
+            @keyframes testimonial-out {
+                0%   { opacity: 1; transform: translateY(0) scale(1); }
+                100% { opacity: 0; transform: translateY(32px) scale(0.94); }
+            }
+            .testimonial-card { transition: box-shadow 0.2s; }`;
         document.head.appendChild(s);
     }
 
-    // Trigger animation only when section enters viewport
-    const section = document.getElementById('testimonials');
-    if (!section) return;
-    const obs = new IntersectionObserver(entries => {
-        if (!entries[0].isIntersecting) return;
-        obs.disconnect();
-        section.querySelectorAll('.testimonial-card').forEach(c => {
-            c.style.animationPlayState = 'running';
+    // Per-card IntersectionObserver: animate in when entering, out when leaving
+    document.getElementById('testimonials-container')
+        .querySelectorAll('.testimonial-card')
+        .forEach((card, idx) => {
+            card.style.animationPlayState = 'paused';
+            const observer = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                    card.style.animation = `testimonial-in 0.5s cubic-bezier(0.34,1.4,0.64,1) ${idx * 0.08}s forwards`;
+                    card.style.animationPlayState = 'running';
+                } else {
+                    card.style.animation = `testimonial-out 0.35s ease-in forwards`;
+                    card.style.animationPlayState = 'running';
+                }
+            }, { threshold: 0.2 });
+            observer.observe(card);
         });
-    }, { threshold: 0.15 });
-    // Pause all animations initially
-    section.querySelectorAll('.testimonial-card').forEach(c => {
-        c.style.animationPlayState = 'paused';
-    });
-    obs.observe(section);
 }
 
 // =============================================
