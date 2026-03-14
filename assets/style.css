@@ -206,41 +206,29 @@ body {
     .hero-year-badge { animation: none; background: linear-gradient(90deg,#f97316,#fbbf24); }
 }
 
-/* ── Hero "Online" Live Badge ── */
+/* ── Hero "Online" Gradient Badge ── */
 .hero-online-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3em;
-    color: #10b981;
+    display: inline;
     font-style: italic;
-    filter: drop-shadow(0 0 8px rgba(16,185,129,0.5));
-    animation: online-glow 2s ease-in-out infinite alternate;
+    font-weight: 900;
+    background: linear-gradient(90deg, #10b981 0%, #34d399 30%, #6ee7b7 55%, #10b981 80%, #059669 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: online-shimmer 2.8s linear infinite;
 }
 
-.hero-online-dot {
-    display: inline-block;
-    width: 0.55em;
-    height: 0.55em;
-    border-radius: 50%;
-    background: #10b981;
-    flex-shrink: 0;
-    box-shadow: 0 0 6px 2px rgba(16,185,129,0.7);
-    animation: online-pulse 1.2s ease-in-out infinite;
-}
-
-@keyframes online-pulse {
-    0%, 100% { transform: scale(1);   opacity: 1; }
-    50%       { transform: scale(1.5); opacity: 0.5; }
-}
-
-@keyframes online-glow {
-    0%   { filter: drop-shadow(0 0 4px rgba(16,185,129,0.35)); }
-    100% { filter: drop-shadow(0 0 14px rgba(16,185,129,0.75)); }
+@keyframes online-shimmer {
+    0%   { background-position: 0% center; }
+    100% { background-position: 250% center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero-online-badge { animation: none; filter: none; }
-    .hero-online-dot   { animation: none; }
+    .hero-online-badge {
+        animation: none;
+        background: linear-gradient(90deg, #10b981, #34d399);
+    }
 }
 
 /* ── Hero "Vào thi thử" Button ── */

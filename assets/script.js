@@ -83,7 +83,7 @@ function renderIndex(data) {
         let titleText = data.hero.title;
         document.getElementById('hero-title').innerHTML = titleText
             .replace("Môn Toán", "<span class='text-primary underline decoration-blue-500/30'>môn Toán</span>")
-            .replace("Online", `<span class="hero-online-badge"><span class="hero-online-dot"></span>Online</span>`);
+            .replace("Online", `<span class="hero-online-badge">Online</span>`);
         document.getElementById('hero-subtitle').textContent = data.hero.subtitle;
         document.getElementById('hero-btn-trial').innerHTML = `<span class="material-symbols-outlined">play_circle</span> ${data.hero.buttons.trial.text}`;
         document.getElementById('hero-btn-trial').href = data.hero.buttons.trial.link;
@@ -818,7 +818,7 @@ function drawRoadmapRoad() {
             // ease out cubic
             const ease = 1 - Math.pow(1 - progress, 3);
             const value = Math.round(ease * target);
-            el.textContent = (value >= 1000 ? Math.round(value / 1000) + 'k' : value) + suffix;
+            el.textContent = (value >= 1000 ? Math.round(value / 1000) : value) + suffix;
             if (elapsed < duration) requestAnimationFrame(tick);
         }
         requestAnimationFrame(tick);
