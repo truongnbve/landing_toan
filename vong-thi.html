@@ -178,7 +178,7 @@ const ROUND = {
           <p class="text-xs text-blue-500">Vòng thi diễn ra từ 5/4 đến 20/4/2026 · Thứ 7 &amp; Chủ nhật hàng tuần</p>
         </div>
       </div>
-      <button onclick="openRegModal('06/4','8:00–8:30')" class="flex-shrink-0 px-4 py-2.5 bg-blue-600 text-white font-black rounded-xl flex items-center gap-1.5 text-sm hover:bg-blue-700 transition-colors shadow-md shadow-blue-200">
+      <button onclick="openRegModal('06/4','8:00–8:30','active')" class="flex-shrink-0 px-4 py-2.5 bg-blue-600 text-white font-black rounded-xl flex items-center gap-1.5 text-sm hover:bg-blue-700 transition-colors shadow-md shadow-blue-200">
         <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1">play_arrow</span>Vào thi
       </button>
     </div>
@@ -215,11 +215,11 @@ const ROUND = {
             <div class="text-xs text-blue-400">CN</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="openRegModal('06/4','8:00–8:30')" class="px-2 py-1 rounded-lg bg-blue-600 text-white text-xs font-bold flex items-center gap-1 hover:bg-blue-700 transition-colors">
+            <button onclick="openRegModal('06/4','8:00–8:30','active')" class="px-2 py-1 rounded-lg bg-blue-600 text-white text-xs font-bold flex items-center gap-1 hover:bg-blue-700 transition-colors">
               <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse flex-shrink-0"></span>8:00–8:30
             </button>
-            <button onclick="openRegModal('06/4','14:00–14:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
-            <button onclick="openRegModal('06/4','19:00–19:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+            <button onclick="openRegModal('06/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onclick="openRegModal('06/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
           </div>
         </div>
 
@@ -230,9 +230,9 @@ const ROUND = {
             <div class="text-xs text-slate-400">T7</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="openRegModal('12/4','8:00–8:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
-            <button onclick="openRegModal('12/4','14:00–14:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
-            <button onclick="openRegModal('12/4','19:00–19:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+            <button onclick="openRegModal('12/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onclick="openRegModal('12/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onclick="openRegModal('12/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
           </div>
         </div>
 
@@ -243,9 +243,9 @@ const ROUND = {
             <div class="text-xs text-slate-400">CN</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="openRegModal('13/4','8:00–8:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
-            <button onclick="openRegModal('13/4','14:00–14:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
-            <button onclick="openRegModal('13/4','19:00–19:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+            <button onclick="openRegModal('13/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onclick="openRegModal('13/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onclick="openRegModal('13/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
           </div>
         </div>
 
@@ -256,9 +256,9 @@ const ROUND = {
             <div class="text-xs text-slate-400">T7</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="openRegModal('19/4','8:00–8:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
-            <button onclick="openRegModal('19/4','14:00–14:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
-            <button onclick="openRegModal('19/4','19:00–19:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
+            <button onclick="openRegModal('19/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onclick="openRegModal('19/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onclick="openRegModal('19/4','19:00–19:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">19:00–19:30</button>
           </div>
         </div>
 
@@ -269,8 +269,8 @@ const ROUND = {
             <div class="text-xs text-blue-400">CN · Cuối</div>
           </div>
           <div class="flex flex-wrap gap-1.5">
-            <button onclick="openRegModal('20/4','8:00–8:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
-            <button onclick="openRegModal('20/4','14:00–14:30')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
+            <button onclick="openRegModal('20/4','8:00–8:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">8:00–8:30</button>
+            <button onclick="openRegModal('20/4','14:00–14:30','upcoming')" class="px-2 py-1 rounded-lg bg-blue-100 text-blue-700 text-xs font-bold hover:bg-blue-200 transition-colors">14:00–14:30</button>
             <span class="px-2 py-1 rounded-lg bg-slate-100 text-slate-400 text-xs font-bold">19:00–19:30</span>
           </div>
         </div>
@@ -691,7 +691,7 @@ const ROUND = {
 <div id="reg-modal" class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
   <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
     <div class="p-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
-      <h3 class="font-black text-xl text-slate-800 dark:text-slate-100">🎯 Xác nhận vào thi</h3>
+      <h3 class="font-black text-xl text-slate-800 dark:text-slate-100" id="modal-title">🎯 Xác nhận vào thi</h3>
       <button onclick="closeRegModal()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-slate-200 transition-colors">
         <span class="material-symbols-outlined text-slate-500 text-lg">close</span>
       </button>
@@ -712,19 +712,27 @@ const ROUND = {
             <p class="font-black text-slate-700 dark:text-slate-200" id="modal-session">8:00–8:30</p>
           </div>
           <div>
-            <p class="text-xs text-blue-500 font-bold mb-0.5">Thời gian còn lại</p>
-            <p class="font-black text-slate-700 dark:text-slate-200">30 phút</p>
+            <p class="text-xs text-blue-500 font-bold mb-0.5" id="modal-time-label">Thời gian còn lại</p>
+            <p class="font-black text-slate-700 dark:text-slate-200" id="modal-time-val">30 phút</p>
           </div>
         </div>
       </div>
-      <div class="space-y-1.5 text-sm text-slate-600 dark:text-slate-300">
+      <div id="modal-active-info" class="space-y-1.5 text-sm text-slate-600 dark:text-slate-300">
         <p class="flex gap-2"><span class="text-blue-500">✓</span>Đây là lần thi thứ 3 (cuối) của bạn.</p>
         <p class="flex gap-2"><span class="text-blue-500">✓</span>Kết quả hiển thị ngay sau khi nộp bài.</p>
         <p class="flex gap-2"><span class="text-amber-500">⚠</span>Một khi đã bắt đầu, bài thi sẽ tính thời gian.</p>
       </div>
-      <button onclick="closeRegModal()" class="w-full py-3.5 bg-blue-600 text-white font-black rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 text-base">
+      <div id="modal-notify-info" class="hidden space-y-1.5 text-sm text-slate-600 dark:text-slate-300">
+        <p class="flex gap-2"><span class="text-blue-500">🔔</span>Bạn sẽ nhận thông báo trước ca thi 30 phút.</p>
+        <p class="flex gap-2"><span class="text-blue-500">✓</span>Bạn có thể đặt nhiều thông báo cho các ca khác nhau.</p>
+      </div>
+      <button id="modal-action-active" onclick="closeRegModal()" class="w-full py-3.5 bg-blue-600 text-white font-black rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 text-base">
         <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">play_arrow</span>
         Bắt đầu thi ngay
+      </button>
+      <button id="modal-action-notify" onclick="closeRegModal()" class="hidden w-full py-3.5 bg-blue-600 text-white font-black rounded-xl flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 text-base">
+        <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">notifications</span>
+        Đặt thông báo
       </button>
       <button onclick="closeRegModal()" class="w-full py-2 text-sm font-bold text-slate-500 hover:text-slate-700 transition-colors">Huỷ</button>
     </div>
@@ -767,9 +775,17 @@ function switchTab(tab) {
   if (btn) { btn.classList.remove('border-transparent','text-slate-500'); btn.classList.add('border-blue-600','text-blue-600'); }
 }
 
-function openRegModal(date, session) {
+function openRegModal(date, session, status) {
   document.getElementById('modal-date').textContent = date + '/2026';
   document.getElementById('modal-session').textContent = session;
+  const isActive = status === 'active';
+  document.getElementById('modal-title').textContent = isActive ? '🎯 Xác nhận vào thi' : '🔔 Đặt thông báo';
+  document.getElementById('modal-action-active').classList.toggle('hidden', !isActive);
+  document.getElementById('modal-action-notify').classList.toggle('hidden', isActive);
+  document.getElementById('modal-active-info').classList.toggle('hidden', !isActive);
+  document.getElementById('modal-notify-info').classList.toggle('hidden', isActive);
+  document.getElementById('modal-time-label').textContent = isActive ? 'Thời gian còn lại' : 'Thời gian bắt đầu';
+  document.getElementById('modal-time-val').textContent = isActive ? '30 phút' : session.split('–')[0];
   document.getElementById('reg-modal').classList.remove('hidden');
 }
 function closeRegModal() { document.getElementById('reg-modal').classList.add('hidden'); }
