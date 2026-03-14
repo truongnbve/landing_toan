@@ -1,27 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('data.json')
-        .then(response => response.json())
-        .then(data => {
-            renderHeader(data);
-            
-            // Check which page we are on by looking for specific IDs
-            if (document.getElementById('hero-title')) {
-                renderIndex(data);
-            }
-            if (document.getElementById('rules-title') && !document.getElementById('hero-title')) {
-                // If it's pure thele page
-                renderRulesPage(data);
-            }
-            if (document.getElementById('gallery-tabs') && !document.getElementById('hero-title')) {
-                // If it's pure gallery page
-                renderGalleryPage(data);
-            }
-            
-            renderFooter(data);
-        })
-        .catch(error => console.error("Error loading data.json", error));
-});
-
 function renderHeader(data) {
     const headerLogo = document.getElementById('header-logo');
     if (headerLogo) headerLogo.textContent = data.header.logo;
@@ -81,9 +57,12 @@ function renderHeader(data) {
 }
 
 function renderIndex(data) {
+    console.log('Rendering index page with data:', data);
+    console.log(document.getElementById('hero-title'));
     // Hero
     if (document.getElementById('hero-title')) {
         let titleText = data.hero.title;
+
         document.getElementById('hero-title').innerHTML = titleText
             .replace("Môn Toán", "<span class='text-primary underline decoration-blue-500/30'>môn Toán</span>")
             .replace("Online", `<span class="hero-online-badge">Online</span>`);
@@ -96,6 +75,8 @@ function renderIndex(data) {
         // Hero image slideshow — use hero.list_image if defined, else fallback to gallery
         const front = document.getElementById('hero-img-front');
         const back  = document.getElementById('hero-img-back');
+
+        console.log({front, back});
         if (front && back) {
             let allImages = [];
             if (data.hero && data.hero.list_image && data.hero.list_image.length > 0) {
@@ -103,6 +84,8 @@ function renderIndex(data) {
             } else if (data.gallery && data.gallery.categories) {
                 allImages = data.gallery.categories.flatMap(c => c.list_image || []).filter(Boolean);
             }
+            console.log({allImages});
+
             if (allImages.length > 1) {
                 let current = 0;
                 // Shuffle
@@ -1018,3 +1001,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+function initOlympicApp() {
+    fetch('/o-assets/data.json')
+      .then(response => response.json())
+      .then(data => {
+          renderHeader(data);
+
+          // Check which page we are on by looking for specific IDs
+          if (document.getElementById('hero-title')) {
+              renderIndex(data);
+          }
+          if (document.getElementById('rules-title') && !document.getElementById('hero-title')) {
+              // If it's pure thele page
+              renderRulesPage(data);
+          }
+          if (document.getElementById('gallery-tabs') && !document.getElementById('hero-title')) {
+              // If it's pure gallery page
+              renderGalleryPage(data);
+          }
+
+          renderFooter(data);
+      })
+      .catch(error => console.error("Error loading data.json", error));
+}
+
+// Support both: static HTML pages (DOMContentLoaded not yet fired)
+// and dynamic injection from SPA (DOMContentLoaded already fired)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initOlympicApp);
+} else {
+    initOlympicApp();
+}
