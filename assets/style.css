@@ -208,9 +208,10 @@ body {
 
 /* ── Hero "Online" Gradient Badge ── */
 .hero-online-badge {
-    display: inline;
+    display: inline-block;
     font-style: italic;
     font-weight: 900;
+    padding: 0 0.08em;
     background: linear-gradient(90deg, #10b981 0%, #34d399 30%, #6ee7b7 55%, #10b981 80%, #059669 100%);
     background-size: 250% auto;
     -webkit-background-clip: text;
