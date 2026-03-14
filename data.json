@@ -54,7 +54,7 @@
       {
         "date": "Tháng 2/2026",
         "event": "Phát động cuộc thi",
-        "details": "Ban tổ chức chính thức công bố cuộc thi Olympic Toán Tuổi thơ Online 2026 trên toàn quốc. Thông tin được gửi đến các trường Tiểu học và THCS trên 63 tỉnh thành."
+        "details": "Ban tổ chức chính thức công bố cuộc thi Olympic Toán Tuổi thơ Online 2026 trên toàn quốc. Thông tin được gửi đến các trường Tiểu học và THCS trên 34 tỉnh thành."
       },
       {
         "date": "Tháng 3/2026",
@@ -559,53 +559,5 @@
         "website": "toantuoitho.vn"
       }
     }
-  },
-  "testimonials": {
-    "title": "Cảm nhận từ học sinh & phụ huynh",
-    "subtitle": "Hàng nghìn gia đình tin tưởng và đồng hành cùng Olympic Toán học Tuổi Thơ qua nhiều năm.",
-    "list": [
-      {
-        "name": "Trần Minh Khôi",
-        "role": "Học sinh lớp 7, Hà Nội",
-        "year": "2024",
-        "rating": 5,
-        "quote": "Cuộc thi giúp mình tự tin hơn rất nhiều vào khả năng giải toán. Đề thi thú vị và vừa sức, không áp lực như mình nghĩ!"
-      },
-      {
-        "name": "Nguyễn Thị Hoa",
-        "role": "Phụ huynh học sinh lớp 5, TP. HCM",
-        "year": "2024",
-        "rating": 5,
-        "quote": "Con tôi rất hào hứng khi tham gia. Ban tổ chức chu đáo, thông tin rõ ràng. Phần thưởng ý nghĩa và truyền cảm hứng cho các bé."
-      },
-      {
-        "name": "Lê Bảo Châu",
-        "role": "Học sinh lớp 8, Đà Nẵng",
-        "year": "2023",
-        "rating": 5,
-        "quote": "Mình đạt giải Nhì vòng 2 năm 2023. Trải nghiệm tuyệt vời, được gặp gỡ các bạn giỏi toán từ khắp nơi trong nước!"
-      },
-      {
-        "name": "Phạm Văn Đức",
-        "role": "Phụ huynh học sinh lớp 6, Cần Thơ",
-        "year": "2023",
-        "rating": 5,
-        "quote": "Hệ thống thi online rất tiện lợi, con có thể thi ngay tại nhà. Kết quả công bố nhanh chóng và minh bạch."
-      },
-      {
-        "name": "Võ Thị Lan Anh",
-        "role": "Học sinh lớp 5, Huế",
-        "year": "2022",
-        "rating": 5,
-        "quote": "Em rất thích phong cách đề thi — nhiều bài toán sáng tạo, không chỉ học thuộc công thức. Em đã học được rất nhiều điều mới!"
-      },
-      {
-        "name": "Ngô Quang Huy",
-        "role": "Phụ huynh học sinh lớp 4, Hải Phòng",
-        "year": "2022",
-        "rating": 5,
-        "quote": "Cuộc thi tạo động lực học tập rất lớn cho con. Sau khi đạt giải, con chủ động xin học thêm toán mà không cần ba mẹ nhắc nữa!"
-      }
-    ]
   }
 }
