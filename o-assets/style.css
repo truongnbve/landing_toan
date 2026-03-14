@@ -494,3 +494,91 @@ body {
   font-size: 2.5rem;
   transform: rotate(17deg);
 }
+
+/* =============================================
+   Shared across pages (thele, luyen-thi, thamgia)
+   ============================================= */
+
+/* --- Math decorative background (hero sections) --- */
+.math-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.math-bg span {
+  position: absolute;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.09);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* =============================================
+   Luyện Thi page
+   ============================================= */
+.pkg-card {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pkg-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);
+}
+
+[data-tab-panel] {
+  display: none;
+}
+
+[data-tab-panel].active {
+  display: block;
+}
+
+#payment-modal {
+  transition: opacity 0.2s;
+}
+
+#payment-modal.hidden {
+  pointer-events: none;
+}
+
+.section-divider {
+  border-top: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+/* =============================================
+   Tham gia page
+   ============================================= */
+.tag-btn {
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tag-btn:hover {
+  filter: brightness(0.93);
+  transform: scale(1.04);
+}
+
+[data-state-panel] {
+  display: none;
+}
+
+[data-state-panel].active {
+  display: block;
+}
+
+.state-tab {
+  transition: all 0.15s;
+}
+
+#info-modal {
+  transition: opacity 0.2s;
+}
+
+#info-modal.hidden {
+  pointer-events: none;
+}
