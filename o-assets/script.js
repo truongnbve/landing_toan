@@ -1,59 +1,59 @@
 function renderHeader(data) {
-    const headerLogo = document.getElementById('header-logo');
-    if (headerLogo) headerLogo.textContent = data.header.logo;
+    // const headerLogo = document.getElementById('header-logo');
+    // if (headerLogo) headerLogo.textContent = data.header.logo;
     
     // Desktop Nav
-    const desktopNav = document.getElementById('header-nav') || document.getElementById('desktop-nav');
-    const resolveNavLink = (link) => link.startsWith('#') ? 'index.html' + link : link;
-    if (desktopNav) {
-        // Determine active page based on file name roughly
-        const currentPath = window.location.pathname;
-        const navHTMLDesktop = data.header.menu.map(item => {
-            const href = resolveNavLink(item.link);
-            const isActive = currentPath.includes(item.link) || (item.name === "Trang chủ" && currentPath.endsWith('/')) ? "text-primary font-bold" : "text-slate-600 hover:text-primary";
-            return `<a class="text-sm font-medium ${isActive} transition-colors px-2 lg:px-4" href="${href}">${item.name}</a>`;
-        }).join('');
-        desktopNav.innerHTML = navHTMLDesktop;
-    }
+    // const desktopNav = document.getElementById('header-nav') || document.getElementById('desktop-nav');
+    // const resolveNavLink = (link) => link.startsWith('#') ? 'index.html' + link : link;
+    // if (desktopNav) {
+    //     // Determine active page based on file name roughly
+    //     const currentPath = window.location.pathname;
+    //     const navHTMLDesktop = data.header.menu.map(item => {
+    //         const href = resolveNavLink(item.link);
+    //         const isActive = currentPath.includes(item.link) || (item.name === "Trang chủ" && currentPath.endsWith('/')) ? "text-primary font-bold" : "text-slate-600 hover:text-primary";
+    //         return `<a class="text-sm font-medium ${isActive} transition-colors px-2 lg:px-4" href="${href}">${item.name}</a>`;
+    //     }).join('');
+    //     desktopNav.innerHTML = navHTMLDesktop;
+    // }
 
     // Mobile Nav Bottom
-    const mobileNavBottom = document.getElementById('mobile-nav-bottom');
-    if(mobileNavBottom){
-         const icons = ['home', 'description', 'timeline', 'newspaper', 'image'];
-         const navHTMLMobile = data.header.menu.map((item, idx) => {
-               const href = resolveNavLink(item.link);
-               return `
-                 <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="${href}">
-                     <span class="material-symbols-outlined">${icons[idx % icons.length]}</span>
-                     <span class="text-[10px] font-bold">${item.name}</span>
-                 </a>
-               `;
-         }).join('');
-         mobileNavBottom.innerHTML = navHTMLMobile;
-    }
+    // const mobileNavBottom = document.getElementById('mobile-nav-bottom');
+    // if(mobileNavBottom){
+    //      const icons = ['home', 'description', 'timeline', 'newspaper', 'image'];
+    //      const navHTMLMobile = data.header.menu.map((item, idx) => {
+    //            const href = resolveNavLink(item.link);
+    //            return `
+    //              <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="${href}">
+    //                  <span class="material-symbols-outlined">${icons[idx % icons.length]}</span>
+    //                  <span class="text-[10px] font-bold">${item.name}</span>
+    //              </a>
+    //            `;
+    //      }).join('');
+    //      mobileNavBottom.innerHTML = navHTMLMobile;
+    // }
 
     // Top Header Mobile Tabs (thele, thuvien)
-    const mobileNavTop = document.getElementById('mobile-nav');
-    if (mobileNavTop) {
-        const currentPath = window.location.pathname;
-        const navHTMLMobile = data.header.menu.map(item => {
-            const isActive = currentPath.includes(item.link) || (item.name === "Trang chủ" && currentPath.endsWith('/')) ? "border-b-2 border-primary text-primary font-bold" : "text-slate-500 font-medium";
-            return `<a class="flex-none px-4 py-3 text-sm ${isActive}" href="${resolveNavLink(item.link)}">${item.name}</a>`;
-        }).join('');
-        mobileNavTop.innerHTML = navHTMLMobile;
-    }
+    // const mobileNavTop = document.getElementById('mobile-nav');
+    // if (mobileNavTop) {
+    //     const currentPath = window.location.pathname;
+    //     const navHTMLMobile = data.header.menu.map(item => {
+    //         const isActive = currentPath.includes(item.link) || (item.name === "Trang chủ" && currentPath.endsWith('/')) ? "border-b-2 border-primary text-primary font-bold" : "text-slate-500 font-medium";
+    //         return `<a class="flex-none px-4 py-3 text-sm ${isActive}" href="${resolveNavLink(item.link)}">${item.name}</a>`;
+    //     }).join('');
+    //     mobileNavTop.innerHTML = navHTMLMobile;
+    // }
 
-    const headerLogin = document.getElementById('header-login');
-    const headerRegister = document.getElementById('header-register');
-    
-    if (headerLogin) {
-        headerLogin.textContent = data.header.actions.login.text;
-        headerLogin.href = data.header.actions.login.link;
-    }
-    if (headerRegister) {
-        headerRegister.textContent = data.header.actions.register.text;
-        headerRegister.href = data.header.actions.register.link;
-    }
+    // const headerLogin = document.getElementById('header-login');
+    // const headerRegister = document.getElementById('header-register');
+    //
+    // if (headerLogin) {
+    //     headerLogin.textContent = data.header.actions.login.text;
+    //     headerLogin.href = data.header.actions.login.link;
+    // }
+    // if (headerRegister) {
+    //     headerRegister.textContent = data.header.actions.register.text;
+    //     headerRegister.href = data.header.actions.register.link;
+    // }
 }
 
 function renderIndex(data) {

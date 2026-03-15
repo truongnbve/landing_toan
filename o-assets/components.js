@@ -7,11 +7,18 @@ class OlympicHeader extends HTMLElement {
           <a href="index.html" class="olympic-no-underline flex items-center gap-2 group cursor-pointer">
             <img src="/o-assets/logo.png" alt="Toán Tuổi Thơ" class="h-10 w-auto object-contain group-hover:scale-105 transition-transform duration-300"/>
           </a>
-          <nav id="header-nav" class="hidden md:flex items-center gap-4"></nav>
+          <nav id="header-nav" class="hidden md:flex items-center gap-4">
+            <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="index.html">Trang chủ</a>
+            <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="thele.html">Thể lệ</a>
+            <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="thamgia.html">Tham gia thi</a>
+            <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="index.html#roadmap">Lộ trình</a>
+            <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="https://olympictuoitho.vn/blog">Tin tức</a>
+            <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="thuvien.html">Gallery</a>
+          </nav>
           <div class="flex items-center gap-3">
             <a id="header-login" href="#" class="px-4 py-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-primary transition-colors hidden md:block">Đăng nhập</a>
             <a id="header-register" href="#" class="px-4 py-2 bg-primary text-white text-sm font-bold rounded-xl shadow-lg shadow-blue-500/20 hover-button-glow hidden md:block">Đăng ký ngay</a>
-            <span class="material-symbols-outlined text-slate-500 md:hidden cursor-pointer p-2">menu</span>
+<!--            <span class="material-symbols-outlined text-slate-500 md:hidden cursor-pointer p-2">menu</span>-->
           </div>
         </div>
       </header>
@@ -65,7 +72,37 @@ class OlympicMobileNav extends HTMLElement {
   connectedCallback() {
     this.style.display = 'contents';
     this.innerHTML = `
-      <div id="mobile-nav-bottom" class="fixed bottom-0 left-0 right-0 lg:hidden bg-white dark:bg-slate-900 border-t border-blue-100 dark:border-slate-800 flex justify-around py-3 px-2 z-50"></div>
+      <div id="mobile-nav-bottom" class="fixed bottom-0 left-0 right-0 lg:hidden bg-white dark:bg-slate-900 border-t border-blue-100 dark:border-slate-800 flex justify-around py-3 px-2 z-50">
+         <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="index.html">
+             <span class="material-symbols-outlined">home</span>
+             <span class="text-[10px] font-bold">Trang chủ</span>
+         </a>
+       
+         <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="thele.html">
+             <span class="material-symbols-outlined">description</span>
+             <span class="text-[10px] font-bold">Thể lệ</span>
+         </a>
+       
+         <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="thamgia.html">
+             <span class="material-symbols-outlined">timeline</span>
+             <span class="text-[10px] font-bold">Tham gia thi</span>
+         </a>
+       
+         <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="index.html#roadmap">
+             <span class="material-symbols-outlined">newspaper</span>
+             <span class="text-[10px] font-bold">Lộ trình</span>
+         </a>
+       
+         <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="https://olympictuoitho.vn/blog">
+             <span class="material-symbols-outlined">image</span>
+             <span class="text-[10px] font-bold">Tin tức</span>
+         </a>
+       
+         <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="thuvien.html">
+             <span class="material-symbols-outlined">home</span>
+             <span class="text-[10px] font-bold">Gallery</span>
+         </a>
+       </div>
     `;
   }
 }
