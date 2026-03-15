@@ -56,6 +56,86 @@ function renderHeader(data) {
     // }
 }
 
+function renderRoadmap(data) {
+    if (!document.getElementById('roadmap-title') || !data.roadmap) return;
+
+    document.getElementById('roadmap-title').textContent = data.roadmap.title;
+    const emojis = ['🚀', '📝', '🏫', '⭐', '🏆'];
+    const labels = ['Khởi động', 'Đăng ký', 'Vòng 1', 'Vòng 2', 'Chung kết'];
+    const colors = [
+        { bg: 'from-emerald-400 to-emerald-500', ring: 'ring-emerald-200', card: 'border-emerald-200 dark:border-emerald-800', badge: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+        { bg: 'from-sky-400 to-sky-500', ring: 'ring-sky-200', card: 'border-sky-200 dark:border-sky-800', badge: 'bg-sky-100 text-sky-700 border-sky-200' },
+        { bg: 'from-violet-400 to-violet-500', ring: 'ring-violet-200', card: 'border-violet-200 dark:border-violet-800', badge: 'bg-violet-100 text-violet-700 border-violet-200' },
+        { bg: 'from-amber-400 to-amber-500', ring: 'ring-amber-200', card: 'border-amber-200 dark:border-amber-800', badge: 'bg-amber-100 text-amber-700 border-amber-200' },
+        { bg: 'from-rose-400 to-rose-500', ring: 'ring-rose-200', card: 'border-rose-200 dark:border-rose-800', badge: 'bg-rose-100 text-rose-700 border-rose-200' },
+    ];
+
+    const makeCard = (step, idx, c, label, emoji, suffix) => `
+            <div class="roadmap-card bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm p-5 rounded-2xl shadow-lg border-2 ${c.card} cursor-pointer select-none transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] group" onClick="toggleRoadmapDetail(this)">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-2xl">${emoji}</span>
+                    <div>
+                        <p class="text-base font-black text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-tight">${label}</p>
+                        <span class="inline-block mt-1 px-2 py-0.5 rounded-full ${c.badge} text-[10px] font-black tracking-wider border">${step.date}</span>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">${step.event}</p>
+                <div class="flex items-center gap-1 mt-3 text-primary dark:text-blue-400 text-xs font-bold opacity-70 group-hover:opacity-100 transition-opacity">
+                    <span>Xem chi tiết</span>
+                    <span class="roadmap-chevron material-symbols-outlined text-sm transition-transform duration-300">expand_more</span>
+                </div>
+                <div class="roadmap-details overflow-hidden transition-all duration-400 ease-in-out" style="max-height:0;opacity:0;">
+                    <div class="pt-3 mt-3 border-t border-dashed ${c.card}">
+                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">${step.details || ''}</p>
+                    </div>
+                </div>
+            </div>`;
+
+    const roadmapHTML = data.roadmap.steps.map((step, idx) => {
+        const emoji = emojis[idx % emojis.length];
+        const label = labels[idx % labels.length];
+        const c = colors[idx % colors.length];
+        const isLeft = idx % 2 === 0;
+
+        const leftCol = isLeft ? makeCard(step, idx, c, label, emoji, 'd') : '';
+        const rightCol = isLeft ? '' : makeCard(step, idx, c, label, emoji, 'd');
+
+        return `
+            <div class="roadmap-step" data-step="${idx}" data-reveal="${isLeft ? 'fade-right' : 'fade-left'}" data-reveal-delay="${Math.min(idx * 100, 400)}">
+                <!-- Mobile layout -->
+                <div class="flex items-start gap-4 md:hidden">
+                    <div class="roadmap-mobile-dot shrink-0 w-12 h-12 rounded-full bg-gradient-to-br ${c.bg} flex items-center justify-center text-xl shadow-lg ring-4 ${c.ring} ring-offset-2 mt-1 z-10">
+                        ${emoji}
+                    </div>
+                    <div class="flex-1">${makeCard(step, idx, c, label, emoji, 'm')}</div>
+                </div>
+                <!-- Desktop layout: grid with 3 columns -->
+                <div class="hidden md:grid roadmap-grid">
+                    <div class="roadmap-col-left">${leftCol}</div>
+                    <div class="roadmap-col-center">
+                        <div class="roadmap-dot w-16 h-16 rounded-full bg-gradient-to-br ${c.bg} flex items-center justify-center text-2xl shadow-xl ring-4 ${c.ring} ring-offset-2 ring-offset-emerald-50 dark:ring-offset-slate-900 cursor-pointer transition-all duration-300 hover:scale-125 hover:ring-offset-4" onClick="toggleRoadmapDetail(this, true)">
+                            ${emoji}
+                        </div>
+                        <span class="text-[10px] font-black text-slate-400 dark:text-slate-500 whitespace-nowrap uppercase tracking-widest mt-2">${label}</span>
+                    </div>
+                    <div class="roadmap-col-right">${rightCol}</div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    document.getElementById('roadmap-container').innerHTML = roadmapHTML;
+
+    // Register newly injected elements with scroll-reveal observer
+    if (typeof window.scrollRevealObserveAll === 'function') window.scrollRevealObserveAll();
+
+    // Scatter decorative elements
+    scatterRoadmapDecorations();
+
+    // Draw SVG winding road (wait for layout)
+    setTimeout(drawRoadmapRoad, 100);
+    window.addEventListener('resize', drawRoadmapRoad);
+}
+
 function renderIndex(data) {
     console.log('Rendering index page with data:', data);
     console.log(document.getElementById('hero-title'));
@@ -110,83 +190,7 @@ function renderIndex(data) {
     }
 
     // Roadmap – adventure game map
-    if (document.getElementById('roadmap-title')) {
-        document.getElementById('roadmap-title').textContent = data.roadmap.title;
-        const emojis = ['🚀', '📝', '🏫', '⭐', '🏆'];
-        const labels = ['Khởi động', 'Đăng ký', 'Vòng 1', 'Vòng 2', 'Chung kết'];
-        const colors = [
-            { bg: 'from-emerald-400 to-emerald-500', ring: 'ring-emerald-200', card: 'border-emerald-200 dark:border-emerald-800', badge: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
-            { bg: 'from-sky-400 to-sky-500', ring: 'ring-sky-200', card: 'border-sky-200 dark:border-sky-800', badge: 'bg-sky-100 text-sky-700 border-sky-200' },
-            { bg: 'from-violet-400 to-violet-500', ring: 'ring-violet-200', card: 'border-violet-200 dark:border-violet-800', badge: 'bg-violet-100 text-violet-700 border-violet-200' },
-            { bg: 'from-amber-400 to-amber-500', ring: 'ring-amber-200', card: 'border-amber-200 dark:border-amber-800', badge: 'bg-amber-100 text-amber-700 border-amber-200' },
-            { bg: 'from-rose-400 to-rose-500', ring: 'ring-rose-200', card: 'border-rose-200 dark:border-rose-800', badge: 'bg-rose-100 text-rose-700 border-rose-200' },
-        ];
-
-        const makeCard = (step, idx, c, label, emoji, suffix) => `
-                <div class="roadmap-card bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm p-5 rounded-2xl shadow-lg border-2 ${c.card} cursor-pointer select-none transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] group" onClick="toggleRoadmapDetail(this)">
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="text-2xl">${emoji}</span>
-                        <div>
-                            <p class="text-base font-black text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-tight">${label}</p>
-                            <span class="inline-block mt-1 px-2 py-0.5 rounded-full ${c.badge} text-[10px] font-black tracking-wider border">${step.date}</span>
-                        </div>
-                    </div>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 font-medium leading-relaxed">${step.event}</p>
-                    <div class="flex items-center gap-1 mt-3 text-primary dark:text-blue-400 text-xs font-bold opacity-70 group-hover:opacity-100 transition-opacity">
-                        <span>Xem chi tiết</span>
-                        <span class="roadmap-chevron material-symbols-outlined text-sm transition-transform duration-300">expand_more</span>
-                    </div>
-                    <div class="roadmap-details overflow-hidden transition-all duration-400 ease-in-out" style="max-height:0;opacity:0;">
-                        <div class="pt-3 mt-3 border-t border-dashed ${c.card}">
-                            <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">${step.details || ''}</p>
-                        </div>
-                    </div>
-                </div>`;
-
-        const roadmapHTML = data.roadmap.steps.map((step, idx) => {
-            const emoji = emojis[idx % emojis.length];
-            const label = labels[idx % labels.length];
-            const c = colors[idx % colors.length];
-            const isLeft = idx % 2 === 0;
-
-            const leftCol = isLeft ? makeCard(step, idx, c, label, emoji, 'd') : '';
-            const rightCol = isLeft ? '' : makeCard(step, idx, c, label, emoji, 'd');
-
-            return `
-                <div class="roadmap-step" data-step="${idx}" data-reveal="${isLeft ? 'fade-right' : 'fade-left'}" data-reveal-delay="${Math.min(idx * 100, 400)}">
-                    <!-- Mobile layout -->
-                    <div class="flex items-start gap-4 md:hidden">
-                        <div class="roadmap-mobile-dot shrink-0 w-12 h-12 rounded-full bg-gradient-to-br ${c.bg} flex items-center justify-center text-xl shadow-lg ring-4 ${c.ring} ring-offset-2 mt-1 z-10">
-                            ${emoji}
-                        </div>
-                        <div class="flex-1">${makeCard(step, idx, c, label, emoji, 'm')}</div>
-                    </div>
-                    <!-- Desktop layout: grid with 3 columns -->
-                    <div class="hidden md:grid roadmap-grid">
-                        <div class="roadmap-col-left">${leftCol}</div>
-                        <div class="roadmap-col-center">
-                            <div class="roadmap-dot w-16 h-16 rounded-full bg-gradient-to-br ${c.bg} flex items-center justify-center text-2xl shadow-xl ring-4 ${c.ring} ring-offset-2 ring-offset-emerald-50 dark:ring-offset-slate-900 cursor-pointer transition-all duration-300 hover:scale-125 hover:ring-offset-4" onClick="toggleRoadmapDetail(this, true)">
-                                ${emoji}
-                            </div>
-                            <span class="text-[10px] font-black text-slate-400 dark:text-slate-500 whitespace-nowrap uppercase tracking-widest mt-2">${label}</span>
-                        </div>
-                        <div class="roadmap-col-right">${rightCol}</div>
-                    </div>
-                </div>
-            `;
-        }).join('');
-        document.getElementById('roadmap-container').innerHTML = roadmapHTML;
-
-        // Register newly injected elements with scroll-reveal observer
-        if (typeof window.scrollRevealObserveAll === 'function') window.scrollRevealObserveAll();
-
-        // Scatter decorative elements
-        scatterRoadmapDecorations();
-
-        // Draw SVG winding road (wait for layout)
-        setTimeout(drawRoadmapRoad, 100);
-        window.addEventListener('resize', drawRoadmapRoad);
-    }
+    renderRoadmap(data);
 
     // Rules summary on index page
     if (document.getElementById('rules-title')) {
@@ -1032,6 +1036,10 @@ function initOlympicApp() {
           if (document.getElementById('gallery-tabs') && !document.getElementById('hero-title')) {
               // If it's pure gallery page
               renderGalleryPage(data);
+          }
+          if (document.getElementById('roadmap-title') && !document.getElementById('hero-title')) {
+              // If it's standalone roadmap page
+              renderRoadmap(data);
           }
 
           renderFooter(data);

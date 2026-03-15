@@ -11,7 +11,7 @@ class OlympicHeader extends HTMLElement {
             <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="index.html">Trang chủ</a>
             <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="thele.html">Thể lệ</a>
             <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="thamgia.html">Tham gia thi</a>
-            <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="index.html#roadmap">Lộ trình</a>
+            <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="roadmap.html">Lộ trình</a>
             <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="https://olympictuoitho.vn/blog">Tin tức</a>
             <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="thuvien.html">Gallery</a>
           </nav>
@@ -88,7 +88,7 @@ class OlympicMobileNav extends HTMLElement {
              <span class="text-[10px] font-bold">Tham gia thi</span>
          </a>
        
-         <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="index.html#roadmap">
+         <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="roadmap.html">
              <span class="material-symbols-outlined">newspaper</span>
              <span class="text-[10px] font-bold">Lộ trình</span>
          </a>
@@ -134,7 +134,46 @@ class OlympicLightbox extends HTMLElement {
   }
 }
 
+class OlympicRoadmap extends HTMLElement {
+  connectedCallback() {
+    this.style.display = 'contents';
+    this.innerHTML = `
+      <section id="roadmap" class="relative py-16 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-emerald-50 via-sky-50 to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"></div>
+        <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-40 dark:opacity-10">
+            <div class="absolute top-8 left-[5%] w-24 h-10 bg-white rounded-full blur-sm animate-drift"></div>
+            <div class="absolute top-16 left-[8%] w-16 h-8 bg-white rounded-full blur-sm animate-drift olympic-delay-05"></div>
+            <div class="absolute top-12 right-[10%] w-32 h-12 bg-white rounded-full blur-sm animate-float"></div>
+            <div class="absolute top-20 right-[13%] w-20 h-8 bg-white rounded-full blur-sm animate-float olympic-delay-1"></div>
+            <div class="absolute bottom-[20%] left-[12%] w-28 h-10 bg-white rounded-full blur-sm animate-drift olympic-delay-2"></div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 pointer-events-none">
+            <svg class="w-full h-24 text-emerald-100/60 dark:text-emerald-900/20" viewBox="0 0 1440 100" preserveAspectRatio="none">
+                <path d="M0,80 Q200,20 400,60 T800,40 T1200,70 T1440,50 L1440,100 L0,100Z" fill="currentColor" />
+            </svg>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <div data-reveal="fade-up" class="inline-flex items-center gap-2 px-4 py-1.5 mb-4 rounded-full bg-amber-100 dark:bg-amber-900/40 border border-amber-200 dark:border-amber-700 text-amber-700 dark:text-amber-300 text-xs font-black uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">map</span>
+                    Hành trình chinh phục
+                </div>
+                <h3 id="roadmap-title" data-reveal="fade-up" data-reveal-delay="100" class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white mb-3">Lộ trình cuộc thi</h3>
+                <p data-reveal="fade-up" data-reveal-delay="200" class="text-slate-500 dark:text-slate-400 max-w-md mx-auto text-sm">Khám phá từng chặng đường trên bản đồ phiêu lưu toán học!</p>
+            </div>
+            <div class="relative max-w-5xl mx-auto">
+                <svg id="roadmap-road-svg" class="absolute inset-0 w-full h-full pointer-events-none z-0"></svg>
+                <div id="roadmap-decorations" class="absolute inset-0 pointer-events-none z-[1]"></div>
+                <div id="roadmap-container" class="relative z-10"></div>
+            </div>
+        </div>
+      </section>
+    `;
+  }
+}
+
 customElements.define('olympic-header', OlympicHeader);
 customElements.define('olympic-footer', OlympicFooter);
 customElements.define('olympic-mobile-nav', OlympicMobileNav);
 customElements.define('olympic-lightbox', OlympicLightbox);
+customElements.define('olympic-roadmap', OlympicRoadmap);
