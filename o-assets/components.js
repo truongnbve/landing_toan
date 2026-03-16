@@ -14,6 +14,7 @@ class OlympicHeader extends HTMLElement {
             <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="roadmap.html">Lộ trình</a>
             <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="https://olympictuoitho.vn/blog">Tin tức</a>
             <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="thuvien.html">Gallery</a>
+            <a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors px-2 lg:px-4" href="nhatruong.html">Nhà trường</a>
           </nav>
           <div class="flex items-center gap-3">
             <a id="header-login" href="#" class="px-4 py-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-primary transition-colors hidden md:block">Đăng nhập</a>
@@ -99,8 +100,13 @@ class OlympicMobileNav extends HTMLElement {
          </a>
        
          <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="thuvien.html">
-             <span class="material-symbols-outlined">home</span>
+             <span class="material-symbols-outlined">photo_library</span>
              <span class="text-[10px] font-bold">Gallery</span>
+         </a>
+       
+         <a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="nhatruong.html">
+             <span class="material-symbols-outlined">domain</span>
+             <span class="text-[10px] font-bold">Nhà trường</span>
          </a>
        </div>
     `;
@@ -177,3 +183,53 @@ customElements.define('olympic-footer', OlympicFooter);
 customElements.define('olympic-mobile-nav', OlympicMobileNav);
 customElements.define('olympic-lightbox', OlympicLightbox);
 customElements.define('olympic-roadmap', OlympicRoadmap);
+
+class OlympicVideoModal extends HTMLElement {
+  connectedCallback() {
+    this.style.display = 'contents';
+    this.innerHTML = `
+      <div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm">
+        <button id="vm-close" class="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-white text-3xl">close</span>
+        </button>
+        <div class="flex flex-col items-center w-full max-w-4xl px-4">
+          <div class="w-full rounded-2xl overflow-hidden shadow-2xl bg-black" style="aspect-ratio:16/9">
+            <iframe id="vm-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <p id="vm-caption" class="mt-4 text-white text-sm font-bold text-center max-w-2xl"></p>
+        </div>
+      </div>
+    `;
+
+    const modal = this.querySelector('#video-modal');
+    const closeBtn = this.querySelector('#vm-close');
+
+    closeBtn.addEventListener('click', () => this.close());
+    modal.addEventListener('click', (e) => { if (e.target === modal) this.close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') this.close(); });
+  }
+
+  open(videoId, title) {
+    const modal = document.getElementById('video-modal');
+    const iframe = document.getElementById('vm-iframe');
+    const caption = document.getElementById('vm-caption');
+    if (!modal || !iframe) return;
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    if (caption) caption.textContent = title || '';
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  close() {
+    const modal = document.getElementById('video-modal');
+    const iframe = document.getElementById('vm-iframe');
+    if (!modal) return;
+    if (iframe) iframe.src = '';
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+}
+
+customElements.define('olympic-video-modal', OlympicVideoModal);

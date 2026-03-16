@@ -607,6 +607,41 @@ function renderGalleryPage(data) {
      renderGrid();
 }
 
+function renderVideoSection(data) {
+    const videoContainer = document.getElementById('video-container');
+    const videoTitle = document.getElementById('video-title');
+    if (!videoContainer) return;
+
+    const videos = (data.videos && data.videos.items) || [];
+    if (videoTitle && data.videos && data.videos.title) {
+        videoTitle.textContent = data.videos.title;
+    }
+
+    videoContainer.innerHTML = videos.map((video, idx) => `
+        <div class="group rounded-2xl overflow-hidden shadow-lg border border-blue-50 dark:border-slate-700 hover-card-lift bg-white dark:bg-slate-800 cursor-pointer" data-video-idx="${idx}">
+            <div class="relative overflow-hidden bg-slate-200 dark:bg-slate-700" style="aspect-ratio:16/9">
+                <img alt="${video.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="${video.thumb || `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}"/>
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+                    <div class="w-14 h-14 rounded-full bg-white/90 group-hover:bg-white group-hover:scale-110 transition-all flex items-center justify-center shadow-lg">
+                        <span class="material-symbols-outlined text-primary text-3xl" style="padding-left:3px">play_arrow</span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4">
+                <p class="text-slate-800 dark:text-slate-100 text-sm font-bold leading-snug line-clamp-2">${video.title}</p>
+            </div>
+        </div>
+    `).join('');
+
+    const modal = document.querySelector('olympic-video-modal');
+    videoContainer.querySelectorAll('[data-video-idx]').forEach(el => {
+        el.addEventListener('click', () => {
+            const video = videos[parseInt(el.dataset.videoIdx)];
+            if (video && modal) modal.open(video.id, video.title);
+        });
+    });
+}
+
 function renderFooter(data) {
     const footerLogo = document.getElementById('footer-logo');
     if (footerLogo) footerLogo.textContent = data.header.logo;
@@ -1036,6 +1071,7 @@ function initOlympicApp() {
           if (document.getElementById('gallery-tabs') && !document.getElementById('hero-title')) {
               // If it's pure gallery page
               renderGalleryPage(data);
+              renderVideoSection(data);
           }
           if (document.getElementById('roadmap-title') && !document.getElementById('hero-title')) {
               // If it's standalone roadmap page

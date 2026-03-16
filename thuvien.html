@@ -3,40 +3,68 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script src="o-assets/head.js"></script>
-<title>Thư viện hình ảnh - Olympic Toán Tuổi thơ</title>
+<title>Thư viện hình ảnh — Olympic Toán Tuổi thơ</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="o-assets/logo.png" />
+<link rel="apple-touch-icon" href="o-assets/logo.png" />
+<!-- SEO -->
+<meta name="description" content="Khám phá thư viện hình ảnh và video từ các kỳ thi Olympic Toán Tuổi thơ." />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Olympic Toán Tuổi thơ" />
+<meta property="og:locale" content="vi_VN" />
+<meta property="og:title" content="Thư viện hình ảnh — Olympic Toán Tuổi thơ" />
+<meta property="og:description" content="Khám phá thư viện hình ảnh và video từ các kỳ thi Olympic Toán Tuổi thơ." />
+<meta property="og:url" content="https://olympictuoitho.vn/thuvien.html" />
+<meta property="og:image" content="https://olympictuoitho.vn/o-assets/logo.png" />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Thư viện hình ảnh — Olympic Toán Tuổi thơ" />
+<meta name="twitter:description" content="Khám phá thư viện hình ảnh và video từ các kỳ thi Olympic Toán Tuổi thơ." />
+<meta name="twitter:image" content="https://olympictuoitho.vn/o-assets/logo.png" />
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-blue-100 flex flex-col min-h-screen">
 <olympic-header></olympic-header>
 <main class="flex-grow">
-<section class="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-blue-50 to-white dark:from-slate-900 dark:to-background-dark">
-<div class="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-    <span class="material-symbols-outlined absolute text-primary text-4xl animate-float olympic-deco-pos-1">add</span>
-    <span class="material-symbols-outlined absolute text-blue-400 text-6xl animate-drift olympic-deco-pos-2">functions</span>
-</div>
-<div class="container mx-auto px-4 relative z-10 text-center">
-<span class="inline-flex items-center gap-2 px-4 py-1.5 mb-6 text-xs font-bold uppercase tracking-wider text-primary bg-blue-100 dark:bg-blue-900/40 rounded-full border border-blue-200 dark:border-blue-800">
-    <span class="material-symbols-outlined text-sm">photo_camera</span>
-    Khoảnh khắc đẹp
-</span>
-<h2 id="page-title" class="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">Thư viện hình ảnh</h2>
-<p class="text-slate-600 dark:text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-    Lưu giữ những kỷ niệm đáng nhớ của các thí sinh trong hành trình chinh phục đỉnh cao Toán học.
-</p>
+
+<!-- Video Section -->
+<section class="py-12 pb-16 bg-slate-50 dark:bg-slate-900/50 relative z-20">
+<div class="container mx-auto px-4 max-w-6xl">
+  <div class="text-center mb-10">
+    <span class="inline-flex items-center gap-2 px-4 py-1.5 mb-4 text-xs font-bold uppercase tracking-wider text-primary bg-blue-100 dark:bg-blue-900/40 rounded-full border border-blue-200 dark:border-blue-800">
+      <span class="material-symbols-outlined text-sm">smart_display</span>
+      Video nổi bật
+    </span>
+    <h2 id="video-title" class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white mb-3 tracking-tight">Thư viện video</h2>
+    <p class="text-slate-600 dark:text-slate-400 text-base max-w-xl mx-auto">Những khoảnh khắc đáng nhớ qua các thước phim về hành trình Olympic Toán Tuổi thơ.</p>
+  </div>
+  <!-- Video Grid -->
+  <div id="video-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Dynamic video inject here -->
+  </div>
 </div>
 </section>
 
 <!-- Gallery Section -->
 <section class="py-8 pb-24 bg-background-light dark:bg-background-dark relative z-20">
 <div class="container mx-auto px-4 max-w-6xl">
-<!-- Tabs -->
-<div id="gallery-tabs" class="flex gap-3 overflow-x-auto no-scrollbar pb-10 justify-center flex-wrap">
-    <!-- Dynamic tabs injected here -->
-</div>
-
-<!-- Photo Grid -->
-<div id="gallery-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-    <!-- Dynamic gallery inject here -->
-</div>
+  <!-- Section heading -->
+  <div class="text-center mb-8">
+    <span class="inline-flex items-center gap-2 px-4 py-1.5 mb-4 text-xs font-bold uppercase tracking-wider text-primary bg-blue-100 dark:bg-blue-900/40 rounded-full border border-blue-200 dark:border-blue-800">
+      <span class="material-symbols-outlined text-sm">photo_camera</span>
+      Khoảnh khắc đẹp
+    </span>
+    <h2 id="page-title" class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white mb-3 tracking-tight">Thư viện hình ảnh</h2>
+    <p class="text-slate-600 dark:text-slate-400 text-base max-w-xl mx-auto">Lưu giữ những kỷ niệm đáng nhớ của các thí sinh trong hành trình chinh phục đỉnh cao Toán học.</p>
+  </div>
+  <!-- Tabs -->
+  <div id="gallery-tabs" class="flex gap-3 overflow-x-auto no-scrollbar pb-10 justify-center flex-wrap">
+      <!-- Dynamic tabs injected here -->
+  </div>
+  <!-- Photo Grid -->
+  <div id="gallery-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <!-- Dynamic gallery inject here -->
+  </div>
 </div>
 </section>
 </main>
@@ -46,5 +74,8 @@
 
 <!-- Lightbox Modal -->
 <olympic-lightbox></olympic-lightbox>
+
+<!-- Video Modal -->
+<olympic-video-modal></olympic-video-modal>
 
 </body></html>

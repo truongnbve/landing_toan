@@ -25,6 +25,10 @@
       {
         "name": "Gallery",
         "link": "thuvien.html"
+      },
+      {
+        "name": "Nhà trường",
+        "link": "nhatruong.html"
       }
     ],
     "actions": {
@@ -642,6 +646,36 @@
         "rating": 5,
         "quote": "Rất ấn tượng với chất lượng đề thi — bám sát chương trình nhưng có tư duy. Cảm ơn ban tổ chức đã tạo ra sân chơi bổ ích này!",
         "year": "Phụ huynh"
+      }
+    ]
+  },
+  "videos": {
+    "title": "Thư viện video",
+    "items": [
+      {
+        "id": "Hyq9VyQqAvw",
+        "title": "10 năm Olympic Toán Tuổi thơ - TS Lê Thống Nhất",
+        "thumb": ""
+      },
+      {
+        "id": "ZL8vFOAfzfQ",
+        "title": "Olympic Toán Tuổi thơ toàn quốc 2014",
+        "thumb": ""
+      },
+      {
+        "id": "PHUhiKl-zHw",
+        "title": "Olympic Toán Tuổi thơ toàn quốc 2013",
+        "thumb": ""
+      },
+      {
+        "id": "2Z3rkt64Sa4",
+        "title": "Khai mạc Olympic Toán Tuổi thơ toàn quốc 2013",
+        "thumb": ""
+      },
+      {
+        "id": "gIO2YCU7tHM",
+        "title": "Giao Lưu Toán tuổi thơ cấp tiểu học năm học",
+        "thumb": ""
       }
     ]
   }
