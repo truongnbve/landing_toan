@@ -633,13 +633,44 @@ function renderVideoSection(data) {
         </div>
     `).join('');
 
-    const modal = document.querySelector('olympic-video-modal');
+    // Init video modal close/escape/backdrop listeners (works without <olympic-video-modal> custom element)
+    const vmModal = document.getElementById('video-modal');
+    if (vmModal && !vmModal.dataset.inited) {
+        vmModal.dataset.inited = '1';
+        const vmClose = document.getElementById('vm-close');
+        if (vmClose) vmClose.addEventListener('click', () => closeVideoModal());
+        vmModal.addEventListener('click', (e) => { if (e.target === vmModal) closeVideoModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeVideoModal(); });
+    }
+
     videoContainer.querySelectorAll('[data-video-idx]').forEach(el => {
         el.addEventListener('click', () => {
             const video = videos[parseInt(el.dataset.videoIdx)];
-            if (video && modal) modal.open(video.id, video.title);
+            if (video) openVideoModal(video.id, video.title);
         });
     });
+}
+
+function openVideoModal(videoId, title) {
+    const modal = document.getElementById('video-modal');
+    const iframe = document.getElementById('vm-iframe');
+    const caption = document.getElementById('vm-caption');
+    if (!modal || !iframe) return;
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    if (caption) caption.textContent = title || '';
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const iframe = document.getElementById('vm-iframe');
+    if (!modal) return;
+    if (iframe) iframe.src = '';
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
 }
 
 function renderFooter(data) {
