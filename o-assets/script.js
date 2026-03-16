@@ -689,7 +689,7 @@ function fetchNews() {
             const newsHtml = resData.result.slice(0, 5).map((news) => {
                 const date = new Date(news.ts * 1000).toLocaleDateString('vi-VN');
                 const img = news.thumbnail || 'https://via.placeholder.com/600x400?text=News';
-                const link = `https://olympictuoitho.vn/blog/${news.slug}`;
+                const link = `https://olympictuoitho.vn/blog/${news.slug}.html`;
                 
                 return `
                     <a href="${link}" target="_blank" class="group bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-lg border border-blue-50 dark:border-slate-700 hover-card-lift flex flex-col h-full w-full">
